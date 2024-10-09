@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -11,46 +12,48 @@ class homePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(144),
+          preferredSize:
+              Size.fromHeight(MediaQuery.of(context).size.height * 0.2),
           child: Container(
             decoration: BoxDecoration(
-                color: Color(0xff6959D6),
+                color: AppColors.primaryColor,
                 borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(40),
+                  bottom: Radius.circular(47),
                 )),
             child: AppBar(
               backgroundColor: Colors.transparent,
               title: Container(
-                width: double.infinity,
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(height: 10,),
                     Text(
-                      '! مساء الخير احمد',
+                      'Hello Ahmed !',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Montserrat',
-                          fontSize: 24
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'تتبع عاداتك الصباحية',
+                      "Track your morning habits effortlessly",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'MontserratLight',
-                          fontSize: 16
+                        color: Colors.white,
                       ),
-                      softWrap: true,
+
+                    ),
+                    Text(
+                      "to stay on top of your daily routine.",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+
                     ),
                   ],
                 ),
               ),
             ),
           )),
-      backgroundColor: Color(0xff151515),
+      backgroundColor: AppColors.backgroundColor,
     );
   }
 }
