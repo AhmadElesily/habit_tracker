@@ -11,7 +11,7 @@ class homePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(194),
+          preferredSize: Size.fromHeight(144),
           child: Container(
             decoration: BoxDecoration(
                 color: Color(0xff6959D6),
