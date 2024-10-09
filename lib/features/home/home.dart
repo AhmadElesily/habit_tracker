@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/analysis/analysis_screen.dart';
-import 'package:habit_tracker/features/core/colors.dart';
+import 'package:habit_tracker/features/core/themes/colors.dart';
 import 'package:habit_tracker/features/home/home_layout/home_layout.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
     double heightSize = MediaQuery.sizeOf(context).height;
     double widthSize = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: tabs[currentIndex],
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
@@ -65,7 +66,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: buildFab(heightSize * 0.4),
       bottomNavigationBar: bottomAppBar(),
     );
@@ -74,8 +76,8 @@ class _HomePageState extends State<HomePage> {
   Widget buildFab(double height) {
     return FloatingActionButton(
       shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(MediaQuery.sizeOf(context).width*0.2)
-      ),
+          borderRadius:
+              BorderRadius.circular(MediaQuery.sizeOf(context).width * 0.2)),
       elevation: 5,
       backgroundColor: AppColors.primaryColor,
       onPressed: () {
@@ -100,7 +102,8 @@ class _HomePageState extends State<HomePage> {
     double widthSize = MediaQuery.sizeOf(context).width;
     double heightSize = MediaQuery.sizeOf(context).height;
     return BottomAppBar(
-      padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+      padding: EdgeInsets.symmetric(
+          horizontal: widthSize * 0.015, vertical: widthSize * 0.015),
       height: heightSize * 0.09,
       color: AppColors.primaryColor,
       shape: const CircularNotchedRectangle(),
@@ -115,17 +118,14 @@ class _HomePageState extends State<HomePage> {
                   ? AppColors.customPurple
                   : Colors.transparent,
             ),
-
-            padding: EdgeInsets.only(right: heightSize*0.0115),
+            padding: EdgeInsets.only(right: heightSize * 0.0115),
             child: Row(
               // mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
                   iconSize: widthSize * 0.09,
                   icon: Icon(
-                    index == 0
-                        ? Icons.home_outlined
-                        : Icons.analytics_outlined,
+                    index == 0 ? Icons.home_outlined : Icons.analytics_outlined,
                     color: currentIndex == index
                         ? AppColors.blueColor
                         : AppColors.whiteColor.withOpacity(0.6),
@@ -133,20 +133,15 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     setState(() {
                       currentIndex = index;
-                      iconVisibility.fillRange(0, iconVisibility.length,
-                          false);
+                      iconVisibility.fillRange(0, iconVisibility.length, false);
                       iconVisibility[index] = true;
                     });
                   },
                 ),
                 if (iconVisibility[index])
-                  Text(
-                    iconNames[index],
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 10
-                    )
-                  ),
+                  Text(iconNames[index],
+                      style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w600, fontSize: 10)),
               ],
             ),
           );
