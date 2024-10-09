@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/features/home/home_screen.dart';
+import 'package:habit_tracker/features/home/home.dart';
 
 void main() {
   runApp(
