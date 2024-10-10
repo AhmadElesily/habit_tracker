@@ -15,6 +15,8 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
         itemCount: 15,
         itemBuilder: (context, index) {
           return buildHabitCard();
