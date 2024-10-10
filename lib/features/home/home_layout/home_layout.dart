@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/colors.dart';
+import 'package:habit_tracker/features/calender/calender_screen.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -14,13 +15,26 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-        itemCount: 15,
-        itemBuilder: (context, index) {
-          return buildHabitCard();
-        });
+    double widthSize = MediaQuery.sizeOf(context).width;
+    double heightSize = MediaQuery.sizeOf(context).height;
+    return Column(children: [
+      Padding(
+        padding: EdgeInsets.only(
+          left: widthSize * 0.03,
+          right: widthSize * 0.03,
+        ),
+        child: const CalenderTab(),
+      ),
+      Expanded(
+        child: ListView.builder(
+            // physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 15,
+            itemBuilder: (context, index) {
+              return buildHabitCard();
+            }),
+      ),
+    ]);
   }
 
   Widget buildHabitCard() {
