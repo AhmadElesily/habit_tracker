@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../colors.dart';
+import '../core/themes/colors.dart';
 
 class CalenderTab extends StatefulWidget {
   const CalenderTab({super.key});
@@ -20,25 +21,25 @@ class _CalenderTabState extends State<CalenderTab> {
         borderRadius: BorderRadius.circular(20),
         color: Colors.transparent,
       ),
-      height: MediaQuery.sizeOf(context).height * 0.1,
+      height: MediaQuery.sizeOf(context).height * 0.1112,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: TableCalendar(
           headerVisible: false,
-          calendarStyle: const CalendarStyle(
-            defaultTextStyle: TextStyle(color: Colors.white),
-            weekendTextStyle: TextStyle(color: AppColors.buttonColor),
-            todayDecoration: BoxDecoration(
+          calendarStyle: CalendarStyle(
+            defaultTextStyle: const TextStyle(color: Colors.white),
+            weekendTextStyle: const TextStyle(color: AppColors.buttonColor),
+            todayDecoration: const BoxDecoration(
               color: AppColors.primaryColor,
               shape: BoxShape.rectangle,
             ),
             selectedDecoration: BoxDecoration(
-              color: AppColors.lightGrey,
+              color: AppColors.whiteColor,
               shape: BoxShape.rectangle,
             ),
           ),
           daysOfWeekStyle: const DaysOfWeekStyle(
-            weekdayStyle: TextStyle(color: AppColors.lightGrey),
+            weekdayStyle: TextStyle(color: AppColors.whiteColor),
             weekendStyle: TextStyle(color: AppColors.buttonColor),
           ),
           // headerStyle: const HeaderStyle(
