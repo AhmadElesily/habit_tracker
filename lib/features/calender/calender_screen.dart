@@ -26,10 +26,10 @@ class _CalenderTabState extends State<CalenderTab> {
         padding: const EdgeInsets.all(8.0),
         child: TableCalendar(
           headerVisible: false,
-          calendarStyle: CalendarStyle(
-            defaultTextStyle: const TextStyle(color: Colors.white),
-            weekendTextStyle: const TextStyle(color: AppColors.buttonColor),
-            todayDecoration: const BoxDecoration(
+          calendarStyle: const CalendarStyle(
+            defaultTextStyle: TextStyle(color: Colors.white),
+            weekendTextStyle: TextStyle(color: AppColors.buttonColor),
+            todayDecoration: BoxDecoration(
               color: AppColors.primaryColor,
               shape: BoxShape.rectangle,
             ),

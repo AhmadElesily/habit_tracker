@@ -16,9 +16,7 @@ class _AnalysisScreenState extends State<AnalysisScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-        length: 3,
-        vsync: this); // تأكد من أن طول الـ TabController يطابق عدد الـ Tabs
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -49,7 +47,7 @@ class _AnalysisScreenState extends State<AnalysisScreen>
               bottom: heightSize * 0.05),
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 'Hello Ahmed !',
@@ -60,7 +58,7 @@ class _AnalysisScreenState extends State<AnalysisScreen>
                 ),
               ),
               Text(
-                "Track your morning habits effortlessly to stay on top of your daily routine.",
+                "Your commitment to your habits.",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -81,9 +79,12 @@ class _AnalysisScreenState extends State<AnalysisScreen>
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
           child: Container(
-            color: Colors.grey[800],
+            color: Colors.grey[900],
             child: TabBar(
               controller: _tabController,
+              indicator: const BoxDecoration(
+                color: Colors.transparent,
+              ),
               labelColor: AppColors.whiteColor,
               unselectedLabelColor: AppColors.textColor,
               tabs: const [
@@ -100,11 +101,8 @@ class _AnalysisScreenState extends State<AnalysisScreen>
           child: TabBarView(
             controller: _tabController,
             children: const [
-              // Weekly View
               WeeklyView(),
-              // Monthly View
               MonthlyView(),
-              // Yearly View - يمكن إضافة كود مماثل إذا كنت تخطط لإظهار عادات سنوية
               YearlyView(),
             ],
           ),
@@ -122,7 +120,11 @@ class WeeklyView extends StatelessWidget {
     return const Center(
       child: Text(
         "Weakly",
-        style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+          color: AppColors.whiteColor,
+        ),
       ),
     );
   }
@@ -136,7 +138,11 @@ class MonthlyView extends StatelessWidget {
     return const Center(
       child: Text(
         "Monthly",
-        style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+          color: AppColors.whiteColor,
+        ),
       ),
     );
   }
@@ -150,7 +156,11 @@ class YearlyView extends StatelessWidget {
     return const Center(
       child: Text(
         "Yearly",
-        style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+          color: AppColors.whiteColor,
+        ),
       ),
     );
   }

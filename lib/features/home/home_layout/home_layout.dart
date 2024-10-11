@@ -37,7 +37,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 bottom: heightSize * 0.05),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   'Hello Ahmed !',
