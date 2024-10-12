@@ -7,6 +7,7 @@ import 'package:habit_tracker/features/items_task/add_task/add_habit.dart';
 import 'package:habit_tracker/features/home/home_layout/home_layout.dart';
 
 class HomePage extends StatefulWidget {
+  static String routeName = "home";
   const HomePage({super.key});
 
   @override
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final List<String> iconNames = ['Home', 'Analysis'];
-  final List<bool> iconVisibility = [false, false];
+  final List<bool> iconVisibility = [true, false];
 
   @override
   Widget build(BuildContext context) {

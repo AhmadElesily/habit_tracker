@@ -40,23 +40,23 @@ class _WeeklyViewState extends State<WeeklyView> {
 
   Widget buildWeeklyView() {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(MediaQuery.sizeOf(context).width*0.019),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(MediaQuery.sizeOf(context).width*0.02),
         // height: 20,
         color: AppColors.primaryColor,
         child: Column(
           children: [
-            const Row(
+             Row(
               children: [
-                Text(
+                const Text(
                   "🌿",
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(
-                  width: 12,
+                  width: MediaQuery.sizeOf(context).width*0.019,
                 ),
-                Text(
+                const Text(
                   "Items",
                   style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
                 ),
