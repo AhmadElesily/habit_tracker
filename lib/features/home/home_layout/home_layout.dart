@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:habit_tracker/colors.dart';
-import 'package:habit_tracker/features/calender/calender_screen.dart';
+
+import 'package:habit_tracker/features/calender/calender_Tab.dart';
 
 import '../../core/themes/colors.dart';
 
@@ -17,13 +17,20 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
-    double widthSize = MediaQuery.sizeOf(context).width;
-    double heightSize = MediaQuery.sizeOf(context).height;
+    double widthSize = MediaQuery
+        .sizeOf(context)
+        .width;
+    double heightSize = MediaQuery
+        .sizeOf(context)
+        .height;
     return Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: PreferredSize(
           preferredSize:
-          Size.fromHeight(MediaQuery.of(context).size.height * 0.2),
+          Size.fromHeight(MediaQuery
+              .of(context)
+              .size
+              .height * 0.2),
           child: Container(
             decoration: const BoxDecoration(
               color: AppColors.primaryColor,
@@ -60,40 +67,46 @@ class _HomeLayoutState extends State<HomeLayout> {
           ),
         ),
         body: Column(children: [
-      Padding(
-        padding: EdgeInsets.only(
-          left: widthSize * 0.03,
-          right: widthSize * 0.03,
-        ),
-        child: const CalenderTab(),
-      ),
-      Expanded(
-        child: ListView.builder(
-            // physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 15,
-            itemBuilder: (context, index) {
-              return buildHabitCard();
-            }),
-      ),
-    ]));
+          Padding(
+            padding: EdgeInsets.only(
+              left: widthSize * 0.03,
+              right: widthSize * 0.03,
+            ),
+            child: const CalenderTab(),
+          ),
+          Expanded(
+            child: ListView.builder(
+              // physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 15,
+                itemBuilder: (context, index) {
+                  return buildHabitCard();
+                }),
+          ),
+        ]));
   }
 
   Widget buildHabitCard() {
     return Container(
       margin: EdgeInsets.all(
-        MediaQuery.sizeOf(context).height * 0.015,
+        MediaQuery
+            .sizeOf(context)
+            .height * 0.015,
       ),
       color: AppColors.primaryColor,
       child: ListTile(
         title: Row(
           children: [
             SizedBox(
-              width: MediaQuery.sizeOf(context).width * 0.015,
+              width: MediaQuery
+                  .sizeOf(context)
+                  .width * 0.015,
             ),
             const Icon(Icons.send),
             SizedBox(
-              width: MediaQuery.sizeOf(context).width * 0.05,
+              width: MediaQuery
+                  .sizeOf(context)
+                  .width * 0.05,
             ),
             Text(
               "Title",

@@ -1,30 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/features/core/themes/colors.dart';
 
-void main() {
-  runApp(MyApp());
-}
+class AddHabitItem extends StatefulWidget {
+  const AddHabitItem({super.key});
 
-class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.purple),
-      home: NewHabitScreen(),
-    );
-  }
+  _AddHabitItemState createState() => _AddHabitItemState();
 }
 
-class NewHabitScreen extends StatefulWidget {
-  @override
-  _NewHabitScreenState createState() => _NewHabitScreenState();
-}
-
-class _NewHabitScreenState extends State<NewHabitScreen> {
+class _AddHabitItemState extends State<AddHabitItem> {
   TextEditingController habitNameController = TextEditingController();
   List<bool> selectedDays = [false, false, false, false, false, false, false];
   Color? selectedColor;
   String? selectedIcon;
+  TextStyle textStyle = const TextStyle(fontSize: 16, color: Colors.white);
 
   final List<Color> habitColors = [
     Colors.pink[100]!,
@@ -43,37 +32,54 @@ class _NewHabitScreenState extends State<NewHabitScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double heightSize = MediaQuery.of(context).size.height;
+    double widthSize = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      appBar: AppBar(
+        foregroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundColor,
+        title: const Text(
+          "Hello Ahmed!",
+          style: TextStyle(fontSize: 23),
+        ),
+      ),
       resizeToAvoidBottomInset: true,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(widthSize * 0.03),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Custom AppBar
               _buildCustomAppBar(context),
-              SizedBox(height: 20),
+              SizedBox(height: heightSize * 0.03),
               TextField(
                 controller: habitNameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Habit Name',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: heightSize * 0.03),
               Text(
                 'Repeat Days in the Week',
-                style: TextStyle(fontSize: 16),
+                style: textStyle,
               ),
-              SizedBox(height: 10),
+              SizedBox(height: heightSize * 0.01),
               Wrap(
                 spacing: 10.0,
                 children: List.generate(7, (index) {
                   return FilterChip(
-                    label: Text(
-                        ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'][index]
-                    ),
+                    label: Text([
+                      'Sat',
+                      'Sun',
+                      'Mon',
+                      'Tue',
+                      'Wed',
+                      'Thu',
+                      'Fri'
+                    ][index]),
                     selected: selectedDays[index],
                     onSelected: (bool selected) {
                       setState(() {
@@ -83,12 +89,12 @@ class _NewHabitScreenState extends State<NewHabitScreen> {
                   );
                 }),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: heightSize * 0.019),
               Text(
                 'Habit Color (Customize)',
-                style: TextStyle(fontSize: 16),
+                style: textStyle,
               ),
-              SizedBox(height: 10),
+              SizedBox(height: heightSize * 0.01),
               Wrap(
                 spacing: 10.0,
                 children: habitColors.map((color) {
@@ -101,22 +107,22 @@ class _NewHabitScreenState extends State<NewHabitScreen> {
                     child: CircleAvatar(
                       backgroundColor: color,
                       child: selectedColor == color
-                          ? Icon(Icons.check, color: Colors.white)
+                          ? const Icon(Icons.check, color: Colors.white)
                           : null,
                     ),
                   );
                 }).toList(),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: heightSize * 0.019),
               Text(
                 'Habit Icon (Customize)',
-                style: TextStyle(fontSize: 16),
+                style: textStyle,
               ),
-              SizedBox(height: 10),
+              SizedBox(height: heightSize * 0.01),
               GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
@@ -142,35 +148,29 @@ class _NewHabitScreenState extends State<NewHabitScreen> {
                       child: Center(
                         child: Text(
                           habitIcons[index],
-                          style: TextStyle(fontSize: 24),
+                          style: const TextStyle(fontSize: 24),
                         ),
                       ),
                     ),
                   );
                 },
               ),
-              SizedBox(height: 30),
+              SizedBox(height: heightSize * 0.019),
               ElevatedButton.icon(
                 onPressed: () {
                   // Add your save habit logic here
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.add,
                   color: Colors.white, // Change the icon color to white
                 ),
-                label: Text(
-                  'Add New Habit',
-                  style: TextStyle(
-                    color: Colors.white, // Change the label text color to white
-                  ),
-                ),
+                label: Text('Add New Habit', style: textStyle),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple,
-                  minimumSize: Size(double.infinity, 50),
-                  textStyle: TextStyle(fontSize: 18),
+                  minimumSize: const Size(double.infinity, 50),
+                  textStyle: const TextStyle(fontSize: 18),
                 ),
               ),
-
             ],
           ),
         ),
@@ -196,7 +196,7 @@ class _NewHabitScreenState extends State<NewHabitScreen> {
           top: heightSize * 0.02,
           bottom: heightSize * 0.05,
         ),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

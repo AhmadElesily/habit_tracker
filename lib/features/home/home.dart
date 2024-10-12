@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/analysis/analysis_screen.dart';
-import 'package:habit_tracker/features/calender/calender_screen.dart';
+import 'package:habit_tracker/features/calender/calender_Tab.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
+import 'package:habit_tracker/features/items_task/add_task/add_habit.dart';
 import 'package:habit_tracker/features/home/home_layout/home_layout.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -45,14 +46,11 @@ class _HomePageState extends State<HomePage> {
       elevation: 5,
       backgroundColor: AppColors.primaryColor,
       onPressed: () {
-        showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Container(
-              height: height,
-              color: Colors.red,
-            );
-          },
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AddHabitItem(),
+          ),
         );
       },
       child: const Icon(

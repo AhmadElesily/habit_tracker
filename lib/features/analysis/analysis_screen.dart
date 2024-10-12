@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/features/analysis/items_completed/monthly_view.dart';
+import 'package:habit_tracker/features/analysis/items_completed/weeklyView.dart';
+import 'package:habit_tracker/features/analysis/items_completed/yearly_view.dart';
 
 import '../core/themes/colors.dart';
 
@@ -74,23 +77,27 @@ class _AnalysisScreenState extends State<AnalysisScreen>
   }
 
   Widget tabBar() {
+    double heightSize = MediaQuery.sizeOf(context).height;
+    double widthSize = MediaQuery.sizeOf(context).width;
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+          padding:  EdgeInsets.symmetric(horizontal: heightSize*0.015, vertical: widthSize*0.03),
           child: Container(
             color: Colors.grey[900],
             child: TabBar(
               controller: _tabController,
-              indicator: const BoxDecoration(
-                color: Colors.transparent,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: AppColors.primaryColor,
               ),
-              labelColor: AppColors.whiteColor,
-              unselectedLabelColor: AppColors.textColor,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorPadding: EdgeInsets.all(widthSize * 0.015),
+              labelColor: AppColors.textColor,
+              unselectedLabelColor: AppColors.whiteColor,
+              dividerColor: Colors.transparent,
               tabs: const [
-                Tab(
-                  text: 'Weekly',
-                ),
+                Tab(text: 'Weekly',),
                 Tab(text: 'Monthly'),
                 Tab(text: 'Yearly'),
               ],
@@ -112,56 +119,4 @@ class _AnalysisScreenState extends State<AnalysisScreen>
   }
 }
 
-class WeeklyView extends StatelessWidget {
-  const WeeklyView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Weakly",
-        style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
-          color: AppColors.whiteColor,
-        ),
-      ),
-    );
-  }
-}
-
-class MonthlyView extends StatelessWidget {
-  const MonthlyView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Monthly",
-        style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
-          color: AppColors.whiteColor,
-        ),
-      ),
-    );
-  }
-}
-
-class YearlyView extends StatelessWidget {
-  const YearlyView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Yearly",
-        style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
-          color: AppColors.whiteColor,
-        ),
-      ),
-    );
-  }
-}
