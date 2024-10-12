@@ -47,20 +47,47 @@ class _WeeklyViewState extends State<WeeklyView> {
         color: AppColors.primaryColor,
         child: Column(
           children: [
-             Row(
-              children: [
-                const Text(
-                  "🌿",
-                  style: TextStyle(fontSize: 20),
-                ),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width*0.019,
-                ),
-                const Text(
-                  "Items",
-                  style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal:3.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "🌿",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.sizeOf(context).width * 0.019,
+                      ),
+                      const Text(
+                        "Items",
+                        style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
+                      ),
+                    ],
+                  ),
+                  const Row(
+                    children: [
+                      Text(
+                        "4",
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: AppColors.whiteColor
+                        ),
+                      ),
+                      Text(
+                        "/7",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.whiteColor
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
             const Divider(),
             Row(
@@ -99,6 +126,7 @@ class _WeeklyViewState extends State<WeeklyView> {
                               ? const Icon(
                                   Icons.check_circle,
                                   color: AppColors.whiteColor,
+                            size: 21,
                                 )
                               : SizedBox(
                                   width:
