@@ -1,19 +1,119 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/features/core/themes/colors.dart';
 
-import '../../core/themes/colors.dart';
-
-class WeeklyView extends StatelessWidget {
+class WeeklyView extends StatefulWidget {
   const WeeklyView({super.key});
 
   @override
+  State<WeeklyView> createState() => _WeeklyViewState();
+}
+
+class _WeeklyViewState extends State<WeeklyView> {
+
+  List<bool> selectedDays = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
+  List<String> days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Weakly",
-        style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
-          color: AppColors.whiteColor,
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => buildWeeklyView(),
+    );
+  }
+
+  Widget buildWeeklyView() {
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Container(
+        padding: EdgeInsets.all(10),
+        // height: 20,
+        color: AppColors.primaryColor,
+        child: Column(
+          children: [
+            const Row(
+              children: [
+                Text(
+                  "🌿",
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  "Items",
+                  style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
+                ),
+              ],
+            ),
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(
+                days.length,
+                (index) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedDays[index] =
+                            !selectedDays[index]; // Toggle selection
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        Text(
+                          days[index],
+                          style: const TextStyle(
+                              fontSize: 15, color: AppColors.whiteColor),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.006,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(
+                            MediaQuery.sizeOf(context).width * 0.02,
+                          ),
+                          decoration: BoxDecoration(
+                            color: selectedDays[index]
+                                ? AppColors.mediumBlue
+                                : Colors.purple[100],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: selectedDays[index]
+                              ? const Icon(
+                                  Icons.check_circle,
+                                  color: AppColors.whiteColor,
+                                )
+                              : SizedBox(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.057,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.027,
+                                ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

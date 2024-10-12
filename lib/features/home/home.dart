@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/analysis/analysis_screen.dart';
-import 'package:habit_tracker/features/calender/calender_Tab.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
 import 'package:habit_tracker/features/items_task/add_task/add_habit.dart';
 import 'package:habit_tracker/features/home/home_layout/home_layout.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,19 +25,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double heightSize = MediaQuery.sizeOf(context).height;
-    double widthSize = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      backgroundColor: AppColors.backgroundColor,
       body: tabs[currentIndex],
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: buildFab(heightSize * 0.4),
+      floatingActionButton: buildFab(),
       bottomNavigationBar: bottomAppBar(),
     );
   }
 
-  Widget buildFab(double height) {
+  Widget buildFab() {
     return FloatingActionButton(
       shape: OutlineInputBorder(
           borderRadius:
@@ -84,21 +81,35 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               // mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton(
-                  iconSize: widthSize * 0.09,
-                  icon: Icon(
-                    index == 0 ? Icons.home_outlined : Icons.analytics_outlined,
-                    color: currentIndex == index
-                        ? AppColors.blueColor
-                        : AppColors.whiteColor.withOpacity(0.6),
-                  ),
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     setState(() {
                       currentIndex = index;
                       iconVisibility.fillRange(0, iconVisibility.length, false);
                       iconVisibility[index] = true;
                     });
                   },
+                  child: index == 0
+                      ? Padding(
+                          padding: EdgeInsets.all(widthSize * 0.0115),
+                          child: SvgPicture.asset(
+                            "assets/Icons/home-2.svg",
+                            width: widthSize * 0.09,
+                            color: currentIndex == index
+                                ? AppColors.blueColor
+                                : AppColors.whiteColor.withOpacity(0.6),
+                          ),
+                        )
+                      : Padding(
+                          padding: EdgeInsets.all(widthSize * 0.0115),
+                          child: Icon(
+                            Icons.analytics_outlined,
+                            size: widthSize * 0.09,
+                            color: currentIndex == index
+                                ? AppColors.blueColor
+                                : AppColors.whiteColor.withOpacity(0.6),
+                          ),
+                        ),
                 ),
                 if (iconVisibility[index])
                   Text(iconNames[index],
