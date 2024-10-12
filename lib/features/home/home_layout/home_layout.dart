@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:habit_tracker/features/calender/calender_Tab.dart';
+import 'package:habit_tracker/features/items_task/edit_habit/edit_habit.dart';
 
 import '../../core/themes/colors.dart';
 
@@ -92,18 +93,33 @@ class _HomeLayoutState extends State<HomeLayout> {
       color: AppColors.primaryColor,
       child: ListTile(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * 0.015,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width * 0.015,
+                ),
+                const Icon(Icons.send),
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width * 0.05,
+                ),
+                Text(
+                  "Title",
+                  style: GoogleFonts.inter(fontSize: 20),
+                ),
+              ],
             ),
-            const Icon(Icons.send),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * 0.05,
-            ),
-            Text(
-              "Title",
-              style: GoogleFonts.inter(fontSize: 20),
-            ),
+            IconButton(
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EditHabitItem()), // الانتقال إلى الصفحة الثانية
+                  );
+                },
+                icon: const Icon(Icons.edit,size: 26,),
+            )
           ],
         ),
         leading: InkWell(

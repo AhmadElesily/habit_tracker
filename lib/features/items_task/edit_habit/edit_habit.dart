@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
 
-class AddHabitItem extends StatefulWidget {
-  const AddHabitItem({super.key});
+class EditHabitItem extends StatefulWidget {
+  const EditHabitItem({super.key});
 
   @override
-  State<AddHabitItem> createState() => _AddHabitItemState();
+  State<EditHabitItem> createState() => _EditHabitItemState();
 }
 
-class _AddHabitItemState extends State<AddHabitItem> {
+class _EditHabitItemState extends State<EditHabitItem> {
   TextEditingController habitNameController = TextEditingController();
   List<bool> selectedDays = [false, false, false, false, false, false, false];
   Color? selectedColor;
@@ -166,7 +166,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                   Icons.add,
                   color: Colors.white, // Change the icon color to white
                 ),
-                label: Text('Add New Habit', style: textStyle),
+                label: Text('Edit Your Habit', style: textStyle),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryColor,
                   minimumSize: const Size(double.infinity, 50),
@@ -204,11 +204,11 @@ class _AddHabitItemState extends State<AddHabitItem> {
           children: [
             Column(
               children: [
-                const SizedBox(height: 12,),
+                const SizedBox(height: 18,),
                 IconButton(
                   onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    Navigator.pop(context);
+                  },
                   icon: const Icon(Icons.arrow_back,size: 30,color: AppColors.textColor,),
                 ),
               ],
@@ -229,7 +229,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                   ),
                   Text(
                     overflow: TextOverflow.ellipsis,
-                    "Create your new habit to build your ideal routine.",
+                    "Edit your habit to perfect your ideal routine.",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
