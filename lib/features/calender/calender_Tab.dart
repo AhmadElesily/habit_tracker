@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-import '../../colors.dart';
 import '../core/themes/colors.dart';
 
 class CalenderTab extends StatefulWidget {
@@ -42,17 +40,6 @@ class _CalenderTabState extends State<CalenderTab> {
             weekdayStyle: TextStyle(color: AppColors.whiteColor),
             weekendStyle: TextStyle(color: AppColors.buttonColor),
           ),
-          // headerStyle: const HeaderStyle(
-          //   titleTextStyle: TextStyle(color: AppColors.lightGrey, fontSize: 20),
-          //   leftChevronIcon: Icon(
-          //     Icons.chevron_left,
-          //     color: AppColors.lightGrey,
-          //   ),
-          //   rightChevronIcon: Icon(
-          //     Icons.chevron_right,
-          //     color:AppColors.lightGrey,
-          //   ),
-          // ),
           firstDay: DateTime.now().subtract(const Duration(days: 365)),
           lastDay: DateTime.now().add(const Duration(days: 365)),
           focusedDay: _focusedDate,
