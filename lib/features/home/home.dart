@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/analysis/analysis_screen.dart';
-import 'package:habit_tracker/features/calender/calender_Tab.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
 import 'package:habit_tracker/features/items_task/add_task/add_habit.dart';
 import 'package:habit_tracker/features/home/home_layout/home_layout.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,19 +24,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double heightSize = MediaQuery.sizeOf(context).height;
-    double widthSize = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      backgroundColor: AppColors.backgroundColor,
       body: tabs[currentIndex],
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: buildFab(heightSize * 0.4),
+      floatingActionButton: buildFab(),
       bottomNavigationBar: bottomAppBar(),
     );
   }
 
-  Widget buildFab(double height) {
+  Widget buildFab() {
     return FloatingActionButton(
       shape: OutlineInputBorder(
           borderRadius:

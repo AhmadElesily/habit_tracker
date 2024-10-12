@@ -107,10 +107,10 @@ class _AnalysisScreenState extends State<AnalysisScreen>
         Expanded(
           child: TabBarView(
             controller: _tabController,
-            children: const [
+            children: [
               WeeklyView(),
-              MonthlyView(),
-              YearlyView(),
+              const MonthlyView(),
+              const YearlyView(),
             ],
           ),
         ),
