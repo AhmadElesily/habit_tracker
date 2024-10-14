@@ -7,8 +7,10 @@ plugins {
 
 android {
     namespace = "com.habit.tracker.x.habit_tracker"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    compileSdkVersion 34  // Corrected compileSdk declaration
+
+    // Remove if not using NDK or define it properly
+    // ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -16,18 +18,17 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = "1.8"  // Fixed syntax for Kotlin JVM target
     }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.habit.tracker.x.habit_tracker"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        // Update these to match your project requirements
+        minSdkVersion 21  // Change to your minimum SDK version
+        targetSdkVersion 33  // Change to your target SDK version
+        versionCode 1  // You can increment this value for new releases
+        versionName "1.0"  // You can change this to match your versioning strategy
     }
 
     buildTypes {
