@@ -106,13 +106,7 @@ class _MonthlyViewState extends State<MonthlyView> {
                                 : Colors.purple[100],
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: selectedDays[index]
-                              ? const Icon(
-                            Icons.check_circle,
-                            color: AppColors.whiteColor,
-                            size: 21,
-                          )
-                              : SizedBox(
+                          child:SizedBox(
                             width: MediaQuery.sizeOf(context).width * 0.057,
                             height: MediaQuery.sizeOf(context).height * 0.027,
                           ),
