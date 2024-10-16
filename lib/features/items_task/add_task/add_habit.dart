@@ -143,33 +143,6 @@ class _AddHabitItemState extends State<AddHabitItem> {
                   style: textStyle,
                 ),
                 SizedBox(height: heightSize * 0.01),
-=======
-                ),
-                SizedBox(height: heightSize * 0.01),
-                Wrap(
-                  spacing: 10.0,
-                  children: habitColors.map((color) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedColor = color;
-                        });
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: color,
-                        child: selectedColor == color
-                            ? const Icon(Icons.check, color: Colors.white)
-                            : null,
-                      ),
-                    );
-                  }).toList(),
-                ),
-                SizedBox(height: heightSize * 0.019),
-                Text(
-                  'Habit Icon (Customize)',
-                  style: textStyle,
-                ),
-                SizedBox(height: heightSize * 0.01),
 
                 GridView.builder(
                   shrinkWrap: true,
@@ -188,13 +161,8 @@ class _AddHabitItemState extends State<AddHabitItem> {
                         });
                       },
                       child: Container(
-
-
                         decoration: BoxDecoration(
                         color: AppColors.darkGray,
-
-                        decoration: BoxDecoration(
-
                           border: Border.all(
                             color: selectedIcon == habitIcons[index]
                                 ? Colors.purple
@@ -218,7 +186,6 @@ class _AddHabitItemState extends State<AddHabitItem> {
 
                           gravity: ToastGravity.CENTER,
 
-                          gravity: ToastGravity.BOTTOM,
 
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
@@ -232,8 +199,6 @@ class _AddHabitItemState extends State<AddHabitItem> {
                           toastLength: Toast.LENGTH_SHORT,
 
                           gravity: ToastGravity.CENTER,
-
-                          gravity: ToastGravity.BOTTOM,
 
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
@@ -273,8 +238,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
             ),
           ),
         ),
-      ),
-    );
+      ),);
   }
 
   PreferredSize _buildCustomAppBar() {
