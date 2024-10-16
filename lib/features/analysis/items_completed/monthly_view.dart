@@ -61,7 +61,6 @@ class _MonthlyViewState extends State<MonthlyView> {
                               ),
                             ],
                           ),
-
                           const Row(
                             children: [
                               Text(
@@ -79,14 +78,11 @@ class _MonthlyViewState extends State<MonthlyView> {
                         ],
                       ),
 
-                          child:SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.057,
-                            height: MediaQuery.sizeOf(context).height * 0.027,
-                          ),
-                        )
-                      ],
-
-                    ),
+                          // child:SizedBox(
+                          //   width: MediaQuery.sizeOf(context).width * 0.057,
+                          //   height: MediaQuery.sizeOf(context).height * 0.027,
+                          // ),
+                        ),
                     const Divider(),
                     Wrap(
                       spacing: MediaQuery.sizeOf(context).width * 0.019,
@@ -136,11 +132,10 @@ class _MonthlyViewState extends State<MonthlyView> {
                         },
                       ),
                     ),
-                  ],
+                  ])
                 ),
               ),
-            ),
-          );
+            );
         } else {
           return const Center(
             child: Text("No Items Selected",style: TextStyle(
