@@ -15,6 +15,7 @@ class AddHabitItem extends StatefulWidget {
 class _AddHabitItemState extends State<AddHabitItem> {
   TextEditingController habitNameController = TextEditingController();
   List<bool> selectedDays = [false, false, false, false, false, false, false];
+  List<int> selectedDaysIndexes = [];
   Color? selectedColor;
   Image? selectedIcon;
   TextStyle textStyle = const TextStyle(fontSize: 16, color: Colors.white);
@@ -107,6 +108,11 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       onSelected: (bool selected) {
                         setState(() {
                           selectedDays[index] = selected;
+                          if (selected) {
+                            selectedDaysIndexes.add(index); // إضافة اليوم
+                          } else {
+                            selectedDaysIndexes.remove(index); // إزالة اليوم
+                          }
                         });
                       },
                     );
@@ -212,10 +218,13 @@ class _AddHabitItemState extends State<AddHabitItem> {
                               text: habitNameController.text,
                               iconImage: selectedIcon!,
                               color: selectedColor!,
+                              selectedDays: selectedDaysIndexes
+
                             ),
                           );
                       Navigator.pop(context);
-                    }
+                    };
+                    print("Ahmed Salem ____$selectedDaysIndexes");
 
                   },
                   style: ElevatedButton.styleFrom(

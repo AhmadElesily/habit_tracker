@@ -78,191 +78,189 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
   }
 
   Widget buildItems() {
-    return Expanded(
-      child: BlocBuilder<ItemsCubit, ItemsState>(
-        builder: (context, state) {
-          if (state is ItemsSucceed) {
-            if (state.items.isEmpty) {
-              return const Center(
-                child: Text(
-                  "No items were found",
-                  style: TextStyle(color: AppColors.whiteColor, fontSize: 26),
-                ),
-              );
-            }
-            return Expanded(
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: state.items.length,
-                  itemBuilder: (context, index) {
-                    return Slidable(
-                      endActionPane: ActionPane(
-                          extentRatio: 0.25,
-                          motion: const StretchMotion(),
-                          children: [
-                            SlidableAction(
-                              onPressed: (context) {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                icon: const Icon(Icons.close)),
-                                            const Text("Confirm Delete"),
-                                          ],
-                                        ),
-                                        content: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Image(
-                                              image: AssetImage(
-                                                  "assets/HabitIcons/streak night.png"),
-                                            ),
-                                            Text(
-                                              textAlign: TextAlign.center,
-                                              "Are you sure you want to delete this item?",
-                                              style: GoogleFonts.aBeeZee(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                backgroundColor:
-                                                    AppColors.blueColor),
-                                            child: const Text(
-                                              "Cancel",
-                                              style: TextStyle(
-                                                color: AppColors.whiteColor,
-                                              ),
-                                            ),
+    return BlocBuilder<ItemsCubit, ItemsState>(
+      builder: (context, state) {
+        if (state is ItemsSucceed) {
+          if (state.items.isEmpty) {
+            return const Center(
+              child: Text(
+                "No items were found",
+                style: TextStyle(color: AppColors.whiteColor, fontSize: 26),
+              ),
+            );
+          }
+          return Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: state.items.length,
+                itemBuilder: (context, index) {
+                  return Slidable(
+                    endActionPane: ActionPane(
+                        extentRatio: 0.25,
+                        motion: const StretchMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              icon: const Icon(Icons.close)),
+                                          const Text("Confirm Delete"),
+                                        ],
+                                      ),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Image(
+                                            image: AssetImage(
+                                                "assets/HabitIcons/streak night.png"),
                                           ),
-                                          OutlinedButton(
-                                            style: OutlinedButton.styleFrom(
+                                          Text(
+                                            textAlign: TextAlign.center,
+                                            "Are you sure you want to delete this item?",
+                                            style: GoogleFonts.aBeeZee(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          style: ElevatedButton.styleFrom(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                               ),
-                                              side: const BorderSide(
-                                                  color: Colors.red, width: 2),
+                                              backgroundColor:
+                                                  AppColors.blueColor),
+                                          child: const Text(
+                                            "Cancel",
+                                            style: TextStyle(
+                                              color: AppColors.whiteColor,
                                             ),
-                                            onPressed: () {
-                                              context
-                                                  .read<ItemsCubit>()
-                                                  .deleteItemsToList(index);
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text("Delete"),
                                           ),
-                                        ],
-                                      );
-                                    });
-                              },
-                              backgroundColor: const Color(0xFFFE4A49),
-                              foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                              label: 'Delete',
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
-                              ),
+                                        ),
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                            side: const BorderSide(
+                                                color: Colors.red, width: 2),
+                                          ),
+                                          onPressed: () {
+                                            context
+                                                .read<ItemsCubit>()
+                                                .deleteItemsToList(index);
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Delete"),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            backgroundColor: const Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
                             ),
-                          ]),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: state.items[index].color,
-                        ),
-                        margin: EdgeInsets.all(
-                          MediaQuery.sizeOf(context).height * 0.015,
-                        ),
-                        child: ListTile(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: MediaQuery.sizeOf(context).width *
-                                        0.015,
-                                  ),
-                                  state.items[index].iconImage,
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.05,
-                                  ),
-                                  Text(
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: true,
-                                    state.items[index].text,
-                                    style: GoogleFonts.inter(
-                                        fontSize: 20,
-                                        color: AppColors.textColor),
-                                  ),
-                                ],
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const EditHabitItem()),
-                                  );
-                                },
-                                icon: const Icon(
-                                  Icons.edit,
-                                  size: 26,
-                                ),
-                              )
-                            ],
                           ),
-                          leading: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  state.items[index].isSelected =
-                                      !state.items[index].isSelected;
-                                });
-                              },
-                              child: state.items[index].isSelected == true
-                                  ? const Icon(Icons.check_circle)
-                                  : const Icon(Icons.circle_outlined)),
-                        ),
+                        ]),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: state.items[index].color,
                       ),
-                    );
-                  }),
-            );
-          } else {
-            return const Center(
-              child: Text(
-                "No Items Founded",
-                style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 25,
-                    color: Colors.white),
-              ),
-            );
-          }
-        },
-      ),
+                      margin: EdgeInsets.all(
+                        MediaQuery.sizeOf(context).height * 0.015,
+                      ),
+                      child: ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.sizeOf(context).width *
+                                      0.015,
+                                ),
+                                state.items[index].iconImage,
+                                SizedBox(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.05,
+                                ),
+                                Text(
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true,
+                                  state.items[index].text,
+                                  style: GoogleFonts.inter(
+                                      fontSize: 20,
+                                      color: AppColors.textColor),
+                                ),
+                              ],
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditHabitItem()),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                size: 26,
+                              ),
+                            )
+                          ],
+                        ),
+                        leading: InkWell(
+                            onTap: () {
+                              setState(() {
+                                state.items[index].isSelected =
+                                    !state.items[index].isSelected;
+                              });
+                            },
+                            child: state.items[index].isSelected == true
+                                ? const Icon(Icons.check_circle)
+                                : const Icon(Icons.circle_outlined)),
+                      ),
+                    ),
+                  );
+                }),
+          );
+        } else {
+          return const Center(
+            child: Text(
+              "No Items Founded",
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 25,
+                  color: Colors.white),
+            ),
+          );
+        }
+      },
     );
   }
 }
