@@ -13,6 +13,7 @@ class ItemsCubit extends Cubit<ItemsState> {
     items.add(itemModel);
     emit(ItemsSucceed(items));
   }
+
   void deleteItemsToList(int index) {
     items.removeAt(index);
     emit(ItemsSucceed(items));

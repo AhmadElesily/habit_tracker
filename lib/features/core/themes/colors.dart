@@ -10,5 +10,7 @@ class AppColors {
   static const Color whiteColor = Colors.white;
   static const Color customPurple = Color(0xffDAD3F9);  // Orange
   static const Color mediumBlue = Color(0xff6959D6);  // Orange
+  static const Color lightGray = Color(0xffEEEEEE);  // Orange
+  static const Color darkGray = Color(0xff313131);  // Orange
   static const Color blueColor = Colors.blue;  // Orange
 }

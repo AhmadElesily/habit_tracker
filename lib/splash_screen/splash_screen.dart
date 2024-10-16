@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset("assets/splashScreen/SplashScreen.svg"),
+           SvgPicture.asset("assets/splashScreen/SplashScreen.svg"),
             Text(
               "Habit Tracker",
               style: GoogleFonts.lato(

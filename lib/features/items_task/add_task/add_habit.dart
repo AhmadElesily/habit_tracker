@@ -130,7 +130,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       child: CircleAvatar(
                         backgroundColor: color,
                         child: selectedColor == color
-                            ? const Icon(Icons.check, color: Colors.white)
+                            ? const Icon(Icons.check_circle, color: Colors.green)
                             : null,
                       ),
                     );
@@ -159,7 +159,9 @@ class _AddHabitItemState extends State<AddHabitItem> {
                         });
                       },
                       child: Container(
+
                         decoration: BoxDecoration(
+                        color: AppColors.darkGray,
                           border: Border.all(
                             color: selectedIcon == habitIcons[index]
                                 ? Colors.purple
@@ -180,7 +182,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       Fluttertoast.showToast(
                           msg: "please select a color",
                           toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
+                          gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
@@ -191,7 +193,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       Fluttertoast.showToast(
                           msg: "please Selected Habit Icon",
                           toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
+                          gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
