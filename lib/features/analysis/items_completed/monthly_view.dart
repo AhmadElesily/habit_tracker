@@ -61,6 +61,7 @@ class _MonthlyViewState extends State<MonthlyView> {
                               ),
                             ],
                           ),
+
                           const Row(
                             children: [
                               Text(
@@ -77,6 +78,14 @@ class _MonthlyViewState extends State<MonthlyView> {
                           )
                         ],
                       ),
+
+                          child:SizedBox(
+                            width: MediaQuery.sizeOf(context).width * 0.057,
+                            height: MediaQuery.sizeOf(context).height * 0.027,
+                          ),
+                        )
+                      ],
+
                     ),
                     const Divider(),
                     Wrap(

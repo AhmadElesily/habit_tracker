@@ -17,6 +17,7 @@ class BuildHabitCard extends StatefulWidget {
 class _BuildHabitCardState extends State<BuildHabitCard> {
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [completeCount(), buildItems()],
     );
@@ -192,6 +193,104 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                           MediaQuery.sizeOf(context).height * 0.015,
                         ),
                         child: Center(
+=======
+    return Column(children: [
+      BlocBuilder<ItemsCubit, ItemsState>(
+        builder: (context, state) {
+          int totalItems = 0;
+          int completedItems = 0;
+
+          if (state is ItemsSucceed) {
+            totalItems = state.items.length;
+            completedItems =
+                state.items.where((item) => item.isSelected).length;
+            return Padding(
+              padding: EdgeInsets.only(
+                  left: MediaQuery.sizeOf(context).width * 0.04,
+                  right: MediaQuery.sizeOf(context).width * 0.04),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Today's habits ",
+                    style: TextStyle(
+                      color: AppColors.customPurple.withOpacity(0.5),
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '$completedItems/',
+                          style: TextStyle(
+                            color: AppColors.customPurple.withOpacity(0.5),
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '$totalItems Completed Items',
+                          style: TextStyle(
+                            color: AppColors.customPurple.withOpacity(0.5),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
+      ),
+      Expanded(
+        child: BlocBuilder<ItemsCubit, ItemsState>(
+          builder: (context, state) {
+            if (state is ItemsSucceed) {
+              if (state.items.isEmpty) {
+                return const Center(
+                  child: Text(
+                    "No items were found",
+                    style: TextStyle(color: AppColors.whiteColor, fontSize: 26),
+                  ),
+                );
+              }
+              return Expanded(
+                child: ListView.builder(
+                    // physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: state.items.length,
+                    itemBuilder: (context, index) {
+                      return Slidable(
+                        endActionPane: ActionPane(
+                            extentRatio: 0.3,
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (context) {
+                                  context
+                                      .read<ItemsCubit>()
+                                      .deleteItemsToList(index);
+                                },
+                                backgroundColor: const Color(0xFFFE4A49),
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                ),
+                              ),
+                            ]),
+                        child: Container(
+                          margin: EdgeInsets.all(
+                            MediaQuery.sizeOf(context).height * 0.015,
+                          ),
+                          color: state.items[index].color,
+
                           child: ListTile(
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -205,8 +304,13 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                     ),
                                     state.items[index].iconImage,
                                     SizedBox(
+
                                       width:
                                           MediaQuery.sizeOf(context).width * 0.05,
+
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.05,
+
                                     ),
                                     Text(
                                       maxLines: 1,
@@ -225,8 +329,10 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
+
                                               const EditHabitItem()),
-                                    );
+=======
+                   );
                                   },
                                   icon: const Icon(
                                     Icons.edit,
@@ -247,6 +353,7 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                     : const Icon(Icons.circle_outlined)),
                           ),
                         ),
+
                       ),
                     );
                   }),
@@ -265,5 +372,25 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
         },
       ),
     );
+
+                      );
+                    }),
+              );
+            } else {
+              return const Center(
+                child: Text(
+                  "No Items Founded",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25,
+                      color: Colors.white),
+                ),
+              );
+            }
+          },
+        ),
+      ),
+    ]);
+
   }
 }
