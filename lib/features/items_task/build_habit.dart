@@ -195,28 +195,32 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.sizeOf(context).width *
-                                      0.015,
-                                ),
-                                state.items[index].iconImage,
-                                SizedBox(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.05,
-                                ),
-                                Text(
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: true,
-                                  state.items[index].text,
-                                  style: GoogleFonts.inter(
-                                      fontSize: 20,
-                                      color: AppColors.textColor),
-                                ),
-                              ],
+                            Flexible(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.sizeOf(context).width *
+                                        0.015,
+                                  ),
+                                  state.items[index].iconImage,
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.05,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      state.items[index].text,
+                                      style: GoogleFonts.inter(
+                                          fontSize: 20,
+                                          color: AppColors.textColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             IconButton(
                               onPressed: () {
