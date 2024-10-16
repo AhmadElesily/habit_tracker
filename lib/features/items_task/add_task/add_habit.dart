@@ -27,7 +27,6 @@ class _AddHabitItemState extends State<AddHabitItem> {
     Colors.orange[100]!,
     Colors.blue[100]!,
   ];
-
   final List<Image> habitIcons = [
     icons("assets/HabitIcons/athkar.png"),
     icons("assets/HabitIcons/baking.png"),
@@ -215,9 +214,9 @@ class _AddHabitItemState extends State<AddHabitItem> {
                             ),
                           );
                       Navigator.pop(context);
-                    }
+                      }
 
-                  },
+                    },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,
                     minimumSize: const Size(double.infinity, 50),
