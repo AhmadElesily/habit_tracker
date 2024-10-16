@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habit_tracker/features/cuibt/items_cubit_cubit.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../core/themes/colors.dart';
 
@@ -11,6 +13,7 @@ class CalenderTab extends StatefulWidget {
 
 class _CalenderTabState extends State<CalenderTab> {
   DateTime _focusedDate = DateTime.now();
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,7 @@ class _CalenderTabState extends State<CalenderTab> {
             CalendarFormat.week: 'Week',
           },
           onDaySelected: (selectedDate, focusedDate) {
+            context.read<ItemsCubit>().loadHabitsForToday(selectedDate);
             setState(() {
               _focusedDate = focusedDate;
             });

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/calender/calender_Tab.dart';
-import 'package:habit_tracker/features/cuibt/items_cuibt_cubit.dart';
+import 'package:habit_tracker/features/cuibt/items_cubit_cubit.dart';
 import 'package:habit_tracker/features/items_task/build_habit.dart';
 import 'package:habit_tracker/features/items_task/edit_habit/edit_habit.dart';
 
@@ -18,6 +18,13 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeLayoutState extends State<HomeLayout> {
   bool isCompleted = false;
+  final DateTime _focusedDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ItemsCubit>().loadHabitsForToday(_focusedDate);
+  }
 
   @override
   Widget build(BuildContext context) {

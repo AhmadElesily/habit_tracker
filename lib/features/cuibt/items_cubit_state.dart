@@ -1,4 +1,7 @@
-part of 'items_cuibt_cubit.dart';
+
+import 'package:flutter/cupertino.dart';
+
+import '../../model/items_model.dart';
 
 @immutable
 sealed class ItemsState {}

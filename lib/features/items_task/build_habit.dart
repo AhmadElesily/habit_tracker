@@ -4,7 +4,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../core/themes/colors.dart';
-import '../cuibt/items_cuibt_cubit.dart';
+import '../cuibt/items_cubit_cubit.dart';
+import '../cuibt/items_cubit_state.dart';
 import 'edit_habit/edit_habit.dart';
 
 class BuildHabitCard extends StatefulWidget {
