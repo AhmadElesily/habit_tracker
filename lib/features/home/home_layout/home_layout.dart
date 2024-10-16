@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/calender/calender_Tab.dart';
-import 'package:habit_tracker/features/cuibt/items_cubit_cubit.dart';
+import 'package:habit_tracker/features/cubit/items_cubit_cubit.dart';
 import 'package:habit_tracker/features/items_task/build_habit.dart';
-import 'package:habit_tracker/features/items_task/edit_habit/edit_habit.dart';
-
 import '../../core/themes/colors.dart';
 
 class HomeLayout extends StatefulWidget {

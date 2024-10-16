@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/themes/colors.dart';
-import '../../cuibt/items_cubit_cubit.dart';
-import '../../cuibt/items_cubit_state.dart';
+import '../../cubit/items_cubit_state.dart';
+import '../../cubit/items_cubit_cubit.dart';
 
 class MonthlyView extends StatefulWidget {
   const MonthlyView({super.key});
