@@ -116,6 +116,34 @@ class _AddHabitItemState extends State<AddHabitItem> {
                 Text(
                   'Habit Color (Customize)',
                   style: textStyle,
+
+                ),
+                SizedBox(height: heightSize * 0.01),
+                Wrap(
+                  spacing: 10.0,
+                  children: habitColors.map((color) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedColor = color;
+                        });
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: color,
+                        child: selectedColor == color
+                            ? const Icon(Icons.check_circle, color: Colors.green)
+                            : null,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(height: heightSize * 0.019),
+                Text(
+                  'Habit Icon (Customize)',
+                  style: textStyle,
+                ),
+                SizedBox(height: heightSize * 0.01),
+=======
                 ),
                 SizedBox(height: heightSize * 0.01),
                 Wrap(
@@ -142,6 +170,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                   style: textStyle,
                 ),
                 SizedBox(height: heightSize * 0.01),
+
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -159,7 +188,13 @@ class _AddHabitItemState extends State<AddHabitItem> {
                         });
                       },
                       child: Container(
+
+
                         decoration: BoxDecoration(
+                        color: AppColors.darkGray,
+
+                        decoration: BoxDecoration(
+
                           border: Border.all(
                             color: selectedIcon == habitIcons[index]
                                 ? Colors.purple
@@ -180,7 +215,11 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       Fluttertoast.showToast(
                           msg: "please select a color",
                           toastLength: Toast.LENGTH_SHORT,
+
+                          gravity: ToastGravity.CENTER,
+
                           gravity: ToastGravity.BOTTOM,
+
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
@@ -191,7 +230,11 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       Fluttertoast.showToast(
                           msg: "please Selected Habit Icon",
                           toastLength: Toast.LENGTH_SHORT,
+
+                          gravity: ToastGravity.CENTER,
+
                           gravity: ToastGravity.BOTTOM,
+
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,

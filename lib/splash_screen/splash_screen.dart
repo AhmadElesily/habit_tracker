@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
+
+import 'package:habit_tracker/features/onboarding/onboarding_screen/onboarding.dart';
+=======
+
 import 'package:habit_tracker/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -37,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset("assets/splashScreen/SplashScreen.svg"),
+           SvgPicture.asset("assets/splashScreen/SplashScreen.svg"),
             Text(
               "Habit Tracker",
               style: GoogleFonts.lato(
