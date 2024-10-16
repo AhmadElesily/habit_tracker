@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
-import 'package:habit_tracker/features/cuibt/items_cuibt_cubit.dart';
+import 'package:habit_tracker/features/cuibt/items_cubit_cubit.dart';
 import 'package:habit_tracker/model/items_model.dart';
 
 class AddHabitItem extends StatefulWidget {
@@ -15,6 +15,7 @@ class AddHabitItem extends StatefulWidget {
 class _AddHabitItemState extends State<AddHabitItem> {
   TextEditingController habitNameController = TextEditingController();
   List<bool> selectedDays = [false, false, false, false, false, false, false];
+  List<int> selectedDaysIndexes = [];
   Color? selectedColor;
   Image? selectedIcon;
   TextStyle textStyle = const TextStyle(fontSize: 16, color: Colors.white);
@@ -94,18 +95,23 @@ class _AddHabitItemState extends State<AddHabitItem> {
                   children: List.generate(7, (index) {
                     return FilterChip(
                       label: Text([
-                        'Sat',
-                        'Sun',
                         'Mon',
                         'Tue',
                         'Wed',
                         'Thu',
-                        'Fri'
+                        'Fri',
+                        'Sat',
+                        'Sun',
                       ][index]),
                       selected: selectedDays[index],
                       onSelected: (bool selected) {
                         setState(() {
                           selectedDays[index] = selected;
+                          if (selected) {
+                            selectedDaysIndexes.add(index); // إضافة اليوم
+                          } else {
+                            selectedDaysIndexes.remove(index); // إزالة اليوم
+                          }
                         });
                       },
                     );
@@ -211,10 +217,12 @@ class _AddHabitItemState extends State<AddHabitItem> {
                               text: habitNameController.text,
                               iconImage: selectedIcon!,
                               color: selectedColor!,
+                              selectedDays: selectedDaysIndexes
                             ),
                           );
                       Navigator.pop(context);
-                      }
+                      };
+                    print("Ahmed Salem _____$selectedDaysIndexes");
 
                     },
                   style: ElevatedButton.styleFrom(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
-import 'package:habit_tracker/features/cuibt/items_cuibt_cubit.dart';
-import 'package:habit_tracker/features/cuibt/items_cuibt_cubit.dart';
+import 'package:habit_tracker/features/cuibt/items_cubit_cubit.dart';
+
+import '../../cuibt/items_cubit_state.dart';
 
 class WeeklyView extends StatefulWidget {
   const WeeklyView({super.key});
@@ -15,13 +16,13 @@ class _WeeklyViewState extends State<WeeklyView> {
   List<List<bool>> selectedDays = [];
 
   List<String> days = [
-    "Sun",
     "Mon",
     "Tue",
     "Wed",
     "Thu",
     "Fri",
     "Sat",
+    "Sun",
   ];
 
   @override
