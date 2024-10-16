@@ -37,7 +37,7 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                   Text(
                     "Today's habits ",
                     style: TextStyle(
-                      color: AppColors.lightGray.withOpacity(0.5),
+                      color: AppColors.customPurple.withOpacity(0.5),
                     ),
                   ),
                   RichText(
@@ -46,7 +46,7 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                         TextSpan(
                           text: '$completedItems/',
                           style: TextStyle(
-                            color: AppColors.lightGray.withOpacity(0.5),
+                            color: AppColors.customPurple.withOpacity(0.5),
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
@@ -54,7 +54,7 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                         TextSpan(
                           text: '$totalItems Completed Items',
                           style: TextStyle(
-                            color: AppColors.lightGray.withOpacity(0.5),
+                            color: AppColors.customPurple.withOpacity(0.5),
                             fontSize: 16,
                           ),
                         ),
