@@ -225,7 +225,10 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const EditHabitItem()),
+                                              EditHabitItem(
+                                                habit: state.items[index],
+                                                index: index,
+                                              )),
                                     );
                                   },
                                   icon: const Icon(

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
+import 'package:habit_tracker/features/cuibt/items_cuibt_cubit.dart';
+import 'package:habit_tracker/model/items_model.dart';
 
 class EditHabitItem extends StatefulWidget {
-  const EditHabitItem({super.key});
+  final ItemModel habit ;
+  final int index ;
+  const EditHabitItem({super.key, required this.habit, required this.index});
 
   @override
   State<EditHabitItem> createState() => _EditHabitItemState();
 }
+
 
 class _EditHabitItemState extends State<EditHabitItem> {
   TextEditingController habitNameController = TextEditingController();
@@ -45,138 +51,165 @@ class _EditHabitItemState extends State<EditHabitItem> {
     icons("assets/HabitIcons/water.png"),
     icons("assets/HabitIcons/yoga.png"),
   ];
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    habitNameController = TextEditingController(text: widget.habit.text);
+    selectedColor = widget.habit.color;
+    // selectedDays =widget.habit.days;
+    selectedIcon = widget.habit.iconImage;
 
+  }
   @override
   Widget build(BuildContext context) {
     double heightSize = MediaQuery.of(context).size.height;
     double widthSize = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      appBar: _buildCustomAppBar(),
-      body: Padding(
-        padding: EdgeInsets.all(widthSize * 0.03),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Custom AppBar
-              SizedBox(height: heightSize * 0.03),
-              TextFormField(
-                controller: habitNameController,
-                decoration: const InputDecoration(
-                  labelText: 'Habit Name',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: heightSize * 0.03),
-              Text(
-                'Repeat Days in the Week',
-                style: textStyle,
-              ),
-              SizedBox(height: heightSize * 0.01),
-              Wrap(
-                spacing: 10.0,
-                children: List.generate(7, (index) {
-                  return FilterChip(
-                    label: Text([
-                      'Sat',
-                      'Sun',
-                      'Mon',
-                      'Tue',
-                      'Wed',
-                      'Thu',
-                      'Fri'
-                    ][index]),
-                    selected: selectedDays[index],
-                    onSelected: (bool selected) {
-                      setState(() {
-                        selectedDays[index] = selected;
-                      });
-                    },
-                  );
-                }),
-              ),
-              SizedBox(height: heightSize * 0.019),
-              Text(
-                'Habit Color (Customize)',
-                style: textStyle,
-              ),
-              SizedBox(height: heightSize * 0.01),
-              Wrap(
-                spacing: 10.0,
-                children: habitColors.map((color) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedColor = color;
-                      });
-                    },
-                    child: CircleAvatar(
-                      backgroundColor: color,
-                      child: selectedColor == color
-                          ? const Icon(Icons.check, color: Colors.white)
-                          : null,
+    return BlocBuilder<ItemsCubit, ItemsState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: AppColors.backgroundColor,
+          appBar: _buildCustomAppBar(),
+          body: Padding(
+            padding: EdgeInsets.all(widthSize * 0.03),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: heightSize * 0.03),
+                  TextFormField(
+                    cursorColor: AppColors.whiteColor,
+                    style: const TextStyle(color: AppColors.whiteColor),
+                    controller: habitNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Habit Name',
+                      border: OutlineInputBorder(),
                     ),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: heightSize * 0.019),
-              Text(
-                'Habit Icon (Customize)',
-                style: textStyle,
-              ),
-              SizedBox(height: heightSize * 0.01),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                itemCount: habitIcons.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedIcon = habitIcons[index];
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: selectedIcon == habitIcons[index]
-                              ? Colors.purple
-                              : Colors.transparent,
-                          width: 2,
+                  ),
+                  SizedBox(height: heightSize * 0.03),
+                  Text(
+                    'Repeat Days in the Week',
+                    style: textStyle,
+                  ),
+                  SizedBox(height: heightSize * 0.01),
+                  Wrap(
+                    spacing: 10.0,
+                    children: List.generate(7, (index) {
+                      return FilterChip(
+                        label: Text([
+                          'Sat',
+                          'Sun',
+                          'Mon',
+                          'Tue',
+                          'Wed',
+                          'Thu',
+                          'Fri'
+                        ][index]),
+                        selected: selectedDays[index],
+                        onSelected: (bool selected) {
+                          setState(() {
+                            selectedDays[index] = selected;
+                          });
+                        },
+                      );
+                    }),
+                  ),
+                  SizedBox(height: heightSize * 0.019),
+                  Text(
+                    'Habit Color (Customize)',
+                    style: textStyle,
+                  ),
+                  SizedBox(height: heightSize * 0.01),
+                  Wrap(
+                    spacing: 10.0,
+                    children: habitColors.map((color) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedColor = color;
+                          });
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: color,
+                          child: selectedColor == color
+                              ? const Icon(Icons.check_circle, color: Colors.green)
+                              : null,
                         ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(child: habitIcons[index]),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(height: heightSize * 0.019),
+                  Text(
+                    'Habit Icon (Customize)',
+                    style: textStyle,
+                  ),
+                  SizedBox(height: heightSize * 0.01),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
                     ),
-                  );
-                },
+                    itemCount: habitIcons.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIcon = habitIcons[index];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.darkGray,
+                            border: Border.all(
+                              color: selectedIcon == habitIcons[index]
+                                  ? Colors.purple
+                                  : Colors.transparent,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(child: habitIcons[index]),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: heightSize * 0.019),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<ItemsCubit>().updateItemsToList(
+                        widget.index,
+                        ItemModel(
+                            text: habitNameController.text,
+                            iconImage: selectedIcon!, color: selectedColor!),
+                      );
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primaryColor,
+                      minimumSize: const Size(double.infinity, 50),
+                      textStyle: const TextStyle(fontSize: 18),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.edit,
+                          color: Colors.white, // Change the icon color to white
+                        ),
+                        const SizedBox(width: 15,),
+                        Text('Edit Your Habit', style: textStyle),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: heightSize * 0.019),
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Add your save habit logic here
-                },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white, // Change the icon color to white
-                ),
-                label: Text('Edit Your Habit', style: textStyle),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  minimumSize: const Size(double.infinity, 50),
-                  textStyle: const TextStyle(fontSize: 18),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
