@@ -19,6 +19,10 @@ class ItemsCubit extends Cubit<ItemsState> {
     items.removeAt(index);
     emit(ItemsSucceed(items));
   }
+  void updateItemsInList(int index, ItemModel updatedItem) {
+    items[index] = updatedItem;
+    emit(ItemsSucceed(items));
+  }
 
   int getCurrentDayIndex(selectedDay) {
     int today = selectedDay.weekday;

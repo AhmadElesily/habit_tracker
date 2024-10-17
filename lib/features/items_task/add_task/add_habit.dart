@@ -121,7 +121,6 @@ class _AddHabitItemState extends State<AddHabitItem> {
                 Text(
                   'Habit Color (Customize)',
                   style: textStyle,
-
                 ),
                 SizedBox(height: heightSize * 0.01),
                 Wrap(
@@ -136,7 +135,8 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       child: CircleAvatar(
                         backgroundColor: color,
                         child: selectedColor == color
-                            ? const Icon(Icons.check_circle, color: Colors.green)
+                            ? const Icon(Icons.check_circle,
+                                color: Colors.green)
                             : null,
                       ),
                     );
@@ -148,7 +148,6 @@ class _AddHabitItemState extends State<AddHabitItem> {
                   style: textStyle,
                 ),
                 SizedBox(height: heightSize * 0.01),
-
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -167,7 +166,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                        color: AppColors.darkGray,
+                          color: AppColors.darkGray,
                           border: Border.all(
                             color: selectedIcon == habitIcons[index]
                                 ? Colors.purple
@@ -188,10 +187,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       Fluttertoast.showToast(
                           msg: "please select a color",
                           toastLength: Toast.LENGTH_SHORT,
-
                           gravity: ToastGravity.CENTER,
-
-
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
@@ -202,9 +198,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                       Fluttertoast.showToast(
                           msg: "please Selected Habit Icon",
                           toastLength: Toast.LENGTH_SHORT,
-
                           gravity: ToastGravity.CENTER,
-
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
@@ -214,17 +208,16 @@ class _AddHabitItemState extends State<AddHabitItem> {
                     if (_formKey.currentState!.validate()) {
                       context.read<ItemsCubit>().addItemsToList(
                             ItemModel(
-                              text: habitNameController.text,
-                              iconImage: selectedIcon!,
-                              color: selectedColor!,
-                              selectedDays: selectedDaysIndexes
-                            ),
+                                text: habitNameController.text,
+                                iconImage: selectedIcon!,
+                                color: selectedColor!,
+                                selectedDays: selectedDaysIndexes,),
                           );
                       Navigator.pop(context);
-                      };
+                    }
+                    ;
                     print("Ahmed Salem _____$selectedDaysIndexes");
-
-                    },
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,
                     minimumSize: const Size(double.infinity, 50),
@@ -245,7 +238,8 @@ class _AddHabitItemState extends State<AddHabitItem> {
             ),
           ),
         ),
-      ),);
+      ),
+    );
   }
 
   PreferredSize _buildCustomAppBar() {
@@ -253,7 +247,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
     double widthSize = MediaQuery.of(context).size.width;
 
     return PreferredSize(
-      preferredSize: Size.fromHeight(heightSize * 0.15),
+      preferredSize: Size.fromHeight(heightSize * 0.18),
       child: Container(
         decoration: const BoxDecoration(
           color: AppColors.primaryColor,

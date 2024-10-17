@@ -83,10 +83,12 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
       builder: (context, state) {
         if (state is ItemsSucceed) {
           if (state.items.isEmpty) {
-            return const Center(
-              child: Text(
-                "No items were found",
-                style: TextStyle(color: AppColors.whiteColor, fontSize: 26),
+            return const Expanded(
+              child: Center(
+                child: Text(
+                  "No items were found",
+                  style: TextStyle(color: AppColors.whiteColor, fontSize: 26),
+                ),
               ),
             );
           }
@@ -228,8 +230,11 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditHabitItem()),
+                                    builder: (context) => EditHabitItem(
+                                      habit: state.items[index],
+                                      index: index,
+                                    ),
+                                  ),
                                 );
                               },
                               icon: const Icon(
@@ -255,13 +260,15 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                 }),
           );
         } else {
-          return const Center(
-            child: Text(
-              "No Items Founded",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 25,
-                  color: Colors.white),
+          return const Expanded(
+            child: Center(
+              child: Text(
+                "No Items Founded",
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 25,
+                    color: Colors.white),
+              ),
             ),
           );
         }

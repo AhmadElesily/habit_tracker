@@ -1,6 +1,4 @@
-
 import 'package:flutter/cupertino.dart';
-
 import '../../model/items_model.dart';
 
 @immutable
