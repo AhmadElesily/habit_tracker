@@ -97,10 +97,11 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                   itemBuilder: (context, index) {
                     return Slidable(
                       endActionPane: ActionPane(
-                          extentRatio: 0.25,
+                          extentRatio: 0.2,
                           motion: const StretchMotion(),
                           children: [
                             SlidableAction(
+                              padding: EdgeInsets.all(8),
                               onPressed: (context) {
                                 showDialog(
                                     context: context,
@@ -181,6 +182,8 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                               borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(12),
                                 bottomRight: Radius.circular(12),
+                                topLeft: Radius.circular(5),
+                                bottomLeft: Radius.circular(5),
                               ),
                             ),
                           ]),
@@ -193,6 +196,11 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                           MediaQuery.sizeOf(context).height * 0.015,
                         ),
                         child: ListTile(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.sizeOf(context).height * 0.01,
+                              vertical:
+                                  MediaQuery.sizeOf(context).height * 0.005),
                           title: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -224,8 +232,11 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const EditHabitItem()),
+                                      builder: (context) => EditHabitItem(
+                                        habit: state.items[index],
+                                        index: index,
+                                      ),
+                                    ),
                                   );
                                 },
                                 icon: const Icon(

@@ -18,4 +18,10 @@ class ItemsCubit extends Cubit<ItemsState> {
     items.removeAt(index);
     emit(ItemsSucceed(items));
   }
+
+  void editItemInList(int index, ItemModel updatedItem) {
+    items[index] = updatedItem;
+    emit(ItemsSucceed(items));
+  }
+
 }

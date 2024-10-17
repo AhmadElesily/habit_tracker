@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/features/core/themes/colors.dart';
+import 'package:habit_tracker/features/cuibt/items_cuibt_cubit.dart';
+import 'package:habit_tracker/model/items_model.dart';
 
 class EditHabitItem extends StatefulWidget {
-  const EditHabitItem({super.key});
+  final ItemModel habit ;
+  final int index ;
+  const EditHabitItem({super.key, required this.habit, required this.index});
 
   @override
   State<EditHabitItem> createState() => _EditHabitItemState();
 }
+
 
 class _EditHabitItemState extends State<EditHabitItem> {
   TextEditingController habitNameController = TextEditingController();
@@ -45,11 +51,22 @@ class _EditHabitItemState extends State<EditHabitItem> {
     icons("assets/HabitIcons/water.png"),
     icons("assets/HabitIcons/yoga.png"),
   ];
+@override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    habitNameController = TextEditingController(text: widget.habit.text);
+    selectedColor = widget.habit.color;
+    // selectedDays =widget.habit.days;
+    selectedIcon = widget.habit.iconImage;
 
+  }
   @override
   Widget build(BuildContext context) {
     double heightSize = MediaQuery.of(context).size.height;
     double widthSize = MediaQuery.of(context).size.width;
+    return BlocBuilder<ItemsCubit, ItemsState>(
+  builder: (context, state) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: _buildCustomAppBar(),
@@ -59,9 +76,10 @@ class _EditHabitItemState extends State<EditHabitItem> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Custom AppBar
               SizedBox(height: heightSize * 0.03),
               TextFormField(
+                cursorColor: AppColors.whiteColor,
+                style: const TextStyle(color: AppColors.whiteColor),
                 controller: habitNameController,
                 decoration: const InputDecoration(
                   labelText: 'Habit Name',
@@ -114,7 +132,7 @@ class _EditHabitItemState extends State<EditHabitItem> {
                     child: CircleAvatar(
                       backgroundColor: color,
                       child: selectedColor == color
-                          ? const Icon(Icons.check, color: Colors.white)
+                          ? const Icon(Icons.check_circle, color: Colors.green)
                           : null,
                     ),
                   );
@@ -144,6 +162,7 @@ class _EditHabitItemState extends State<EditHabitItem> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
+                        color: AppColors.darkGray,
                         border: Border.all(
                           color: selectedIcon == habitIcons[index]
                               ? Colors.purple
@@ -158,26 +177,40 @@ class _EditHabitItemState extends State<EditHabitItem> {
                 },
               ),
               SizedBox(height: heightSize * 0.019),
-              ElevatedButton.icon(
+              ElevatedButton(
                 onPressed: () {
-                  // Add your save habit logic here
+                  context.read<ItemsCubit>().editItemInList(
+                      widget.index,
+                      ItemModel(
+                          text: habitNameController.text,
+                          iconImage: selectedIcon!, color: selectedColor!),
+                  );
+                  Navigator.pop(context);
                 },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white, // Change the icon color to white
-                ),
-                label: Text('Edit Your Habit', style: textStyle),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryColor,
                   minimumSize: const Size(double.infinity, 50),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
-              ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.edit,
+                      color: Colors.white, // Change the icon color to white
+                    ),
+                    const SizedBox(width: 15,),
+                    Text('Edit Your Habit', style: textStyle),
+                  ],
+                ),
+                ),
             ],
           ),
         ),
       ),
     );
+  },
+);
   }
 
   PreferredSize _buildCustomAppBar() {
