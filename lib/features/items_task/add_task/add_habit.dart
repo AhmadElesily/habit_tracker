@@ -183,13 +183,25 @@ class _AddHabitItemState extends State<AddHabitItem> {
                 SizedBox(height: heightSize * 0.019),
                 ElevatedButton(
                   onPressed: () {
+                    if (selectedDaysIndexes.isEmpty) {
+                      Fluttertoast.showToast(
+                          msg: "Please select at least one day.",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: AppColors.primaryColor,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                      return;
+                    }
+
                     if (selectedColor == null) {
                       Fluttertoast.showToast(
                           msg: "please select a color",
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
+                          backgroundColor: AppColors.primaryColor,
                           textColor: Colors.white,
                           fontSize: 16.0);
                       return;
@@ -200,7 +212,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
+                          backgroundColor: AppColors.primaryColor,
                           textColor: Colors.white,
                           fontSize: 16.0);
                       return;

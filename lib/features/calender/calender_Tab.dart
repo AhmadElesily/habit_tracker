@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../core/themes/colors.dart';
+import '../cubit/items_cubit_cubit.dart';
 
-class CalenderTab extends StatelessWidget { // Changed to StatelessWidget
+class CalenderTab extends StatefulWidget { // Changed to StatelessWidget
   const CalenderTab({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    DateTime focusedDate = DateTime.now();
+  State<CalenderTab> createState() => _CalenderTabState();
+}
 
+class _CalenderTabState extends State<CalenderTab> {
+  DateTime _focusedDate = DateTime.now();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -40,13 +47,17 @@ class CalenderTab extends StatelessWidget { // Changed to StatelessWidget
                 ),
                 firstDay: DateTime.now().subtract(const Duration(days: 365)),
                 lastDay: DateTime.now().add(const Duration(days: 365)),
-                focusedDay: focusedDate,
-                currentDay: focusedDate,
+                focusedDay: _focusedDate,
+                currentDay: _focusedDate,
                 calendarFormat: CalendarFormat.week,
                 availableCalendarFormats: const {
                   CalendarFormat.week: 'Week',
                 },
                 onDaySelected: (selectedDate, focusedDate) {
+                  context.read<ItemsCubit>().loadHabitsForToday(selectedDate);
+                  setState(() {
+                    _focusedDate = focusedDate;
+                  });
                   // Update focused date if necessary
                 },
               ),
