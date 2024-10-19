@@ -108,9 +108,9 @@ class _AddHabitItemState extends State<AddHabitItem> {
                         setState(() {
                           selectedDays[index] = selected;
                           if (selected) {
-                            selectedDaysIndexes.add(index); // إضافة اليوم
+                            selectedDaysIndexes.add(index); //
                           } else {
-                            selectedDaysIndexes.remove(index); // إزالة اليوم
+                            selectedDaysIndexes.remove(index); //
                           }
                         });
                       },
