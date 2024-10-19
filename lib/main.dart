@@ -16,7 +16,7 @@ void main() {
     BlocProvider(
       create: (context) => ItemsCubit(),
       child: MaterialApp(
-        title: "Habit",
+        title: "Habit Tracker",
         debugShowCheckedModeBanner: false,
         initialRoute: SplashScreen.routeName,
         routes: {
