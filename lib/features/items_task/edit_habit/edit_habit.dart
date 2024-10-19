@@ -7,18 +7,20 @@ import '../../cubit/items_cubit_cubit.dart';
 import '../../cubit/items_cubit_state.dart';
 
 class EditHabitItem extends StatefulWidget {
-  final ItemModel habit ;
-  final int index ;
+  final ItemModel habit;
+
+  final int index;
+
   const EditHabitItem({super.key, required this.habit, required this.index});
 
   @override
   State<EditHabitItem> createState() => _EditHabitItemState();
 }
 
-
 class _EditHabitItemState extends State<EditHabitItem> {
   TextEditingController habitNameController = TextEditingController();
   List<bool> selectedDays = [false, false, false, false, false, false, false];
+  List<int> selectedDaysIndexes = [];
   Color? selectedColor;
   Image? selectedIcon;
   TextStyle textStyle = const TextStyle(fontSize: 16, color: Colors.white);
@@ -60,9 +62,9 @@ class _EditHabitItemState extends State<EditHabitItem> {
     // TODO: implement initState
     habitNameController = TextEditingController(text: widget.habit.text);
     selectedColor = widget.habit.color;
-    // selectedDays =widget.habit.days;
+    selectedDaysIndexes = widget.habit.selectedDays;
+    selectedDays = toListOfDays(widget.habit.selectedDays);
     selectedIcon = widget.habit.iconImage;
-
   }
 
   @override
@@ -101,18 +103,23 @@ class _EditHabitItemState extends State<EditHabitItem> {
                     children: List.generate(7, (index) {
                       return FilterChip(
                         label: Text([
-                          'Sat',
-                          'Sun',
                           'Mon',
                           'Tue',
                           'Wed',
                           'Thu',
-                          'Fri'
+                          'Fri',
+                          'Sat',
+                          'Sun',
                         ][index]),
                         selected: selectedDays[index],
                         onSelected: (bool selected) {
                           setState(() {
                             selectedDays[index] = selected;
+                              if (selected) {
+                                selectedDaysIndexes.add(index); //
+                              } else {
+                                selectedDaysIndexes.remove(index); //
+                              }
                           });
                         },
                       );
@@ -136,7 +143,8 @@ class _EditHabitItemState extends State<EditHabitItem> {
                         child: CircleAvatar(
                           backgroundColor: color,
                           child: selectedColor == color
-                              ? const Icon(Icons.check_circle, color: Colors.green)
+                              ? const Icon(Icons.check_circle,
+                                  color: Colors.green)
                               : null,
                         ),
                       );
@@ -151,7 +159,8 @@ class _EditHabitItemState extends State<EditHabitItem> {
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 5,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
@@ -184,11 +193,14 @@ class _EditHabitItemState extends State<EditHabitItem> {
                   ElevatedButton(
                     onPressed: () {
                       context.read<ItemsCubit>().updateItemsInList(
-                        widget.index,
-                        ItemModel(
-                            text: habitNameController.text,
-                            iconImage: selectedIcon!, color: selectedColor!, selectedDays: []),
-                      );
+                            widget.index,
+                            ItemModel(
+                              text: habitNameController.text,
+                              iconImage: selectedIcon!,
+                              color: selectedColor!,
+                              selectedDays: selectedDaysIndexes,
+                            ),
+                          );
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
@@ -203,7 +215,9 @@ class _EditHabitItemState extends State<EditHabitItem> {
                           Icons.edit,
                           color: Colors.white, // Change the icon color to white
                         ),
-                        const SizedBox(width: 15,),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         Text('Edit Your Habit', style: textStyle),
                       ],
                     ),
@@ -241,17 +255,23 @@ class _EditHabitItemState extends State<EditHabitItem> {
           children: [
             Column(
               children: [
-                const SizedBox(height: 18,),
+                const SizedBox(
+                  height: 18,
+                ),
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(Icons.arrow_back,size: 30,color: AppColors.textColor,),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                    color: AppColors.textColor,
+                  ),
                 ),
               ],
             ),
             Container(
-              width:290,
+              width: 290,
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -280,6 +300,13 @@ class _EditHabitItemState extends State<EditHabitItem> {
         ),
       ),
     );
+  }
+
+  List<bool> toListOfDays(List<int> daysIndex) {
+    for (int day in daysIndex) {
+      selectedDays[day] = true;
+    }
+    return selectedDays;
   }
 }
 
