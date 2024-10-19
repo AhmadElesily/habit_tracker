@@ -50,7 +50,7 @@ class OnBoardingPage extends StatelessWidget {
               left: MediaQuery.sizeOf(context).width * 0.07),
           child:  Text(
               textAlign: TextAlign.center,
-              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18,),
               description),
         ),
       ],
