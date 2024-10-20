@@ -53,7 +53,7 @@ class _AnalysisScreenState extends State<AnalysisScreen>
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                'Hello Ahmed !',
+                'Hello There !',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
