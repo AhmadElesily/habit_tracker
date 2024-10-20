@@ -20,6 +20,8 @@ class _HomeLayoutState extends State<HomeLayout> {
   void initState() {
     super.initState();
     context.read<ItemsCubit>().loadHabitsForToday(_focusedDate);
+  //  context.read<ItemsCubit>().fetchTodos();
+
   }
 
   @override
@@ -47,7 +49,7 @@ class _HomeLayoutState extends State<HomeLayout> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                'Hello Ahmed !',
+                'Hello There !',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -55,7 +57,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 ),
               ),
               Text(
-                "Track your morning habits effortlessly to stay on top of your daily routine.",
+                "Track your habits effortlessly to stay on top of your daily routine.",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
