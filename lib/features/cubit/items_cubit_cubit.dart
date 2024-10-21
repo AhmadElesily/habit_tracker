@@ -24,14 +24,7 @@ class ItemsCubit extends Cubit<ItemsState> {
   }
 
   void addItemsToList(ItemModel itemModel) {
-    habitsBox.add({
-      'text': itemModel.text,
-      'iconImage': itemModel.iconImage,
-      'isSelected': itemModel.isSelected,
-      'selectedDays': itemModel.selectedDays,
-      'color': itemModel.color,
-    });
-
+    habitsBox.add(itemModel.toMap());
     items.add(itemModel);
     emit(ItemsSucceed(items));
   }
