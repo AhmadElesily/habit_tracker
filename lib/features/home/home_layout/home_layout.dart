@@ -20,7 +20,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   void initState() {
     super.initState();
     context.read<ItemsCubit>().loadHabitsForToday(_focusedDate);
-    //  context.read<ItemsCubit>().fetchTodos();
+    context.read<ItemsCubit>().fetchTodos();
   }
 
   @override

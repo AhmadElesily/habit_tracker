@@ -1,23 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/model/items_model.dart';
 import 'package:hive/hive.dart';
-import 'items_cubit_state.dart';
 
+import 'items_cubit_state.dart';
 
 class ItemsCubit extends Cubit<ItemsState> {
   ItemsCubit() : super(ItemsInitial());
   final habitsBox = Hive.box('habits');
   List<ItemModel> items = [];
 
-
   void fetchTodos() {
-    for (final item in habitsBox.toMap().values) {
+    for (final item in habitsBox.values) {
+      final Color itemColor = Color(item['color']); // get color
+
+      RegExp regExp = RegExp(r'name:\s*"(.*?)"'); // get image path
+      Match? itemImagePath = regExp.firstMatch(item['iconImage'].toString());
+      print(itemImagePath!.group(1) ?? '');
+      final itemImage = Image.asset(itemImagePath!.group(1) ?? '');
+
       final habit = ItemModel(
         text: item['text'],
         selectedDays: item['selectedDays'],
-        color: item['color'],
+        color: itemColor,
         isSelected: item['isSelected'],
-        iconImage: item['iconImage'],
+        iconImage: itemImage,
       );
       items.add(habit);
     }
