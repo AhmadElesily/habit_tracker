@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habit_tracker/features/core/themes/colors.dart';
 import 'package:habit_tracker/features/cubit/items_cubit_cubit.dart';
 
+import '../../../core/themes/colors.dart';
 import '../../cubit/items_cubit_state.dart';
 
 class WeeklyView extends StatefulWidget {

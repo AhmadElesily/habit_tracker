@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/features/core/themes/colors.dart';
 import 'package:habit_tracker/home_page.dart';
 
+import '../../../core/themes/colors.dart';
 import '../onboarding-page.dart';
 
 class OnboardingScreen extends StatefulWidget {

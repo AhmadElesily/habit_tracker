@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../core/themes/colors.dart';
+import '../../core/themes/colors.dart';
 import '../cubit/items_cubit_cubit.dart';
 import '../cubit/items_cubit_state.dart';
 import 'edit_habit/edit_habit.dart';

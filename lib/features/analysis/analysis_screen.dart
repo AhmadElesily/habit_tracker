@@ -3,7 +3,7 @@ import 'package:habit_tracker/features/analysis/items_completed/monthly_view.dar
 import 'package:habit_tracker/features/analysis/items_completed/weeklyView.dart';
 import 'package:habit_tracker/features/analysis/items_completed/yearly_view.dart';
 
-import '../core/themes/colors.dart';
+import '../../core/themes/colors.dart';
 
 class AnalysisScreen extends StatefulWidget {
   const AnalysisScreen({super.key});
