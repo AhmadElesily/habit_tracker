@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../core/themes/colors.dart';
+import '../../../core/themes/colors.dart';
 
 // class YearlyView extends StatelessWidget {
 //   const YearlyView({super.key});
@@ -20,9 +20,7 @@ import '../../core/themes/colors.dart';
 //     );
 //   }
 // }
-import 'package:flutter/material.dart';
 
-import '../../core/themes/colors.dart';
 
 
 

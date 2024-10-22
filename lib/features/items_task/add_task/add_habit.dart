@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:habit_tracker/features/core/themes/colors.dart';
 import 'package:habit_tracker/features/cubit/items_cubit_cubit.dart';
 import 'package:habit_tracker/model/items_model.dart';
+
+import '../../../core/constants/constant.dart';
+import '../../../core/themes/colors.dart';
 
 class AddHabitItem extends StatefulWidget {
   const AddHabitItem({super.key});
@@ -20,35 +22,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
   Image? selectedIcon;
   TextStyle textStyle = const TextStyle(fontSize: 16, color: Colors.white);
   final _formKey = GlobalKey<FormState>();
-  final List<Color> habitColors = [
-    Colors.pink[100]!,
-    Colors.purple[100]!,
-    Colors.green[100]!,
-    Colors.yellow[100]!,
-    Colors.orange[100]!,
-    Colors.blue[100]!,
-  ];
-  final List<Image> habitIcons = [
-    icons("assets/HabitIcons/athkar.png"),
-    icons("assets/HabitIcons/baking.png"),
-    icons("assets/HabitIcons/books.png"),
-    icons("assets/HabitIcons/care.png"),
-    icons("assets/HabitIcons/cooking.png"),
-    icons("assets/HabitIcons/design.png"),
-    icons("assets/HabitIcons/garden.png"),
-    icons("assets/HabitIcons/journel.png"),
-    icons("assets/HabitIcons/medidate.png"),
-    icons("assets/HabitIcons/night.png"),
-    icons("assets/HabitIcons/picnic.png"),
-    icons("assets/HabitIcons/Quran.png"),
-    icons("assets/HabitIcons/reading.png"),
-    icons("assets/HabitIcons/spa.png"),
-    icons("assets/HabitIcons/sport.png"),
-    icons("assets/HabitIcons/walking.png"),
-    icons("assets/HabitIcons/writing.png"),
-    icons("assets/HabitIcons/water.png"),
-    icons("assets/HabitIcons/yoga.png"),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +99,7 @@ class _AddHabitItemState extends State<AddHabitItem> {
                 SizedBox(height: heightSize * 0.01),
                 Wrap(
                   spacing: 10.0,
-                  children: habitColors.map((color) {
+                  children: Shared.habitColors.map((color) {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
@@ -156,26 +130,26 @@ class _AddHabitItemState extends State<AddHabitItem> {
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                   ),
-                  itemCount: habitIcons.length,
+                  itemCount: Shared.habitIcons.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          selectedIcon = habitIcons[index];
+                          selectedIcon = Shared.habitIcons[index];
                         });
                       },
                       child: Container(
                         decoration: BoxDecoration(
                           color: AppColors.darkGray,
                           border: Border.all(
-                            color: selectedIcon == habitIcons[index]
+                            color: selectedIcon == Shared.habitIcons[index]
                                 ? Colors.purple
                                 : Colors.transparent,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Center(child: habitIcons[index]),
+                        child: Center(child: Shared.habitIcons[index]),
                       ),
                     );
                   },
