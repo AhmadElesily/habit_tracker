@@ -22,7 +22,7 @@ void main() async {
       child: MaterialApp(
         title: "Habit Tracker",
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.routeName,
+        initialRoute: HomePage.routeName,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           HomePage.routeName: (context) => const HomePage(),
