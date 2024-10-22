@@ -25,7 +25,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.habit.tracker.x.habit_tracker"
         // Update these to match your project requirements
-        minSdkVersion 21  // Change to your minimum SDK version
+        minSdkVersion 23  // Change to your minimum SDK version
         targetSdkVersion 33  // Change to your target SDK version
         versionCode 1  // You can increment this value for new releases
         versionName "1.0"  // You can change this to match your versioning strategy

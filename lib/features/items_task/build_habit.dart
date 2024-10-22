@@ -206,7 +206,10 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                     width: MediaQuery.sizeOf(context).width *
                                         0.015,
                                   ),
-                                  state.items[index].iconImage,
+                                  SizedBox(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.07,
+                                      child: state.items[index].iconImage),
                                   SizedBox(
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.05,
