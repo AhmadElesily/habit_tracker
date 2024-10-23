@@ -175,7 +175,7 @@ class _EditHabitItemState extends State<EditHabitItem> {
                               selectedDays: selectedDaysIndexes,
                             ),
                           );
-                      Navigator.pop(context);
+                      Navigator.pop(context,DateTime.now());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor,
@@ -234,7 +234,7 @@ class _EditHabitItemState extends State<EditHabitItem> {
                 ),
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pop(context,DateTime.now());
                   },
                   icon: const Icon(
                     Icons.arrow_back,

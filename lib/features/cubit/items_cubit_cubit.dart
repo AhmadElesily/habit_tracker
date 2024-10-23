@@ -38,7 +38,9 @@ class ItemsCubit extends Cubit<ItemsState> {
   }
 
   void deleteItemsToList(int index) {
-    habitsBox.delete(index);
+    var key = habitsBox.keyAt(index);
+    print("Key Of Habit in Hive $key");
+    habitsBox.delete(key);
     habits.removeAt(index);
     emit(ItemsSucceed(habits));
   }
@@ -58,7 +60,7 @@ class ItemsCubit extends Cubit<ItemsState> {
   //== 7 ? 0 : today
   void loadHabitsForToday(selectedDay,[List<ItemModel>? habitList]) {
     //habitsBox.clear();
-    //print("fdjhhhhhhhhhhhhhhhhh$selectedDay");
+
     List<ItemModel> newList ;
     int currentDay = getCurrentDayIndex(selectedDay);
     if (habitList != null) {

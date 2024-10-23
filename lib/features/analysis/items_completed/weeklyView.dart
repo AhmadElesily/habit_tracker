@@ -65,23 +65,28 @@ class _WeeklyViewState extends State<WeeklyView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width*.07,
-                                  height:MediaQuery.sizeOf(context).height*.05 ,
-                                  child: state.items[index].iconImage),
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width * 0.019,
-                              ),
-                              Text(
-                                state.items[index].text,
-                                style: const TextStyle(
-                                    fontSize: 20,
-                                    color: AppColors.whiteColor),
-                              ),
-                            ],
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.sizeOf(context).width*.16,
+                                    height:MediaQuery.sizeOf(context).height*.06 ,
+                                    child: state.items[index].iconImage),
+                                SizedBox(
+                                  width: MediaQuery.sizeOf(context).width * 0.019,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    overflow:TextOverflow.ellipsis,
+                                    state.items[index].text,
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        color: AppColors.whiteColor),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                            Row(
                             children: [

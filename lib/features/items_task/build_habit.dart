@@ -168,6 +168,7 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                             context
                                                 .read<ItemsCubit>()
                                                 .deleteItemsToList(index);
+                                           context.read<ItemsCubit>().loadHabitsForToday(DateTime.now());
                                             Navigator.pop(context);
                                           },
                                           child: const Text("Delete"),
@@ -233,12 +234,12 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => EditHabitItem(
-                                      habit: state.items[index],
-                                      index: index,
-                                    ),
-                                  ),
-                                );
+                                      builder: (context) => EditHabitItem(habit: state.items[index], index: index)),
+                                ).then((selectedDay) {
+                                  if (selectedDay != null) {
+                                    context.read<ItemsCubit>().loadHabitsForToday(selectedDay);
+                                  }
+                                });
                               },
                               icon: const Icon(
                                 Icons.edit,
