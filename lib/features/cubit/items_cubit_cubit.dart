@@ -8,15 +8,15 @@ import 'items_cubit_state.dart';
 class ItemsCubit extends Cubit<ItemsState> {
   ItemsCubit() : super(ItemsInitial());
   final habitsBox = Hive.box('habits');
-  List<ItemModel> items = [];
+  List<ItemModel> habits = [];
 
-  void fetchTodos() {
+  List<ItemModel> fetchHabits() {
     for (final item in habitsBox.values) {
       final Color itemColor = Color(item['color']); // get color
 
       RegExp regExp = RegExp(r'name:\s*"(.*?)"'); // get image path
       Match? itemImagePath = regExp.firstMatch(item['iconImage'].toString());
-      print(itemImagePath!.group(1) ?? '');
+     // print(itemImagePath!.group(1) ?? '');
       final itemImage = Image.asset(itemImagePath!.group(1) ?? '');
 
       final habit = ItemModel(
@@ -26,24 +26,27 @@ class ItemsCubit extends Cubit<ItemsState> {
         isSelected: item['isSelected'],
         iconImage: itemImage,
       );
-      items.add(habit);
+      habits.add(habit);
     }
+    return habits;
   }
 
   void addItemsToList(ItemModel itemModel) {
     habitsBox.add(itemModel.toMap());
-    items.add(itemModel);
-    emit(ItemsSucceed(items));
+    habits.add(itemModel);
+    emit(ItemsSucceed(habits));
   }
 
   void deleteItemsToList(int index) {
-    items.removeAt(index);
-    emit(ItemsSucceed(items));
+    habitsBox.delete(index);
+    habits.removeAt(index);
+    emit(ItemsSucceed(habits));
   }
 
   void updateItemsInList(int index, ItemModel updatedItem) {
-    items[index] = updatedItem;
-    emit(ItemsSucceed(items));
+    habitsBox.putAt(index, updatedItem.toMap());
+    habits[index] = updatedItem;
+    emit(ItemsSucceed(habits));
   }
 
   int getCurrentDayIndex(selectedDay) {
@@ -53,12 +56,26 @@ class ItemsCubit extends Cubit<ItemsState> {
   }
 
   //== 7 ? 0 : today
-  void loadHabitsForToday(selectedDay) {
+  void loadHabitsForToday(selectedDay,[List<ItemModel>? habitList]) {
+    //habitsBox.clear();
+    //print("fdjhhhhhhhhhhhhhhhhh$selectedDay");
+    List<ItemModel> newList ;
     int currentDay = getCurrentDayIndex(selectedDay);
-    List<ItemModel> todayHabits = items.where((habit) {
-      return habit.selectedDays.contains(currentDay);
-    }).toList();
-    print("List of habits $todayHabits");
-    emit(ItemsSucceed(todayHabits));
+    if (habitList != null) {
+      newList = habitList.where((habit){
+        return habit.selectedDays.contains(currentDay);
+      }).toList();
+    }else {
+       newList = habits.where((habit) {
+        return habit.selectedDays.contains(currentDay);
+      }).toList();
+    }
+    emit(ItemsSucceed(newList));
+  }
+
+  void initData(){
+    List<ItemModel> listOfHabits = fetchHabits();
+    loadHabitsForToday(DateTime.now(),listOfHabits);
+
   }
 }

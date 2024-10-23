@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/features/analysis/analysis_screen.dart';
+import 'package:habit_tracker/features/cubit/items_cubit_cubit.dart';
 import 'package:habit_tracker/features/items_task/add_task/add_habit.dart';
 import 'package:habit_tracker/features/home/home_layout/home_layout.dart';
 
@@ -21,6 +23,12 @@ class _HomePageState extends State<HomePage> {
     const HomeLayout(),
     const AnalysisScreen(),
   ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<ItemsCubit>().initData();
+    //  context.read<ItemsCubit>().fetchTodos();
+  }
 
   final List<String> iconNames = ['Home', 'Analysis'];
   final List<bool> iconVisibility = [true, false];
@@ -48,9 +56,12 @@ class _HomePageState extends State<HomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const AddHabitItem(),
-          ),
-        );
+            builder: (context) => const AddHabitItem()),
+        ).then((selectedDay) {
+              if (selectedDay != null) {
+                context.read<ItemsCubit>().loadHabitsForToday(selectedDay);
+              }
+            });
       },
       child: const Icon(
         Icons.add_circle_outline,

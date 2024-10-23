@@ -68,7 +68,10 @@ class _WeeklyViewState extends State<WeeklyView> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              state.items[index].iconImage,
+                              SizedBox(
+                                width: MediaQuery.sizeOf(context).width*.07,
+                                  height:MediaQuery.sizeOf(context).height*.05 ,
+                                  child: state.items[index].iconImage),
                               SizedBox(
                                 width: MediaQuery.sizeOf(context).width * 0.019,
                               ),

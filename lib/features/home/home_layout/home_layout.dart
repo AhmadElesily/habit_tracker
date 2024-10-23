@@ -16,12 +16,11 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   bool isCompleted = false;
   final DateTime _focusedDate = DateTime.now();
-
   @override
   void initState() {
     super.initState();
     context.read<ItemsCubit>().loadHabitsForToday(_focusedDate);
-    context.read<ItemsCubit>().fetchTodos();
+    //  context.read<ItemsCubit>().fetchTodos();
   }
 
   @override
