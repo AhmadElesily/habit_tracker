@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/model/items_model.dart';
 
 import '../../core/themes/colors.dart';
 import '../cubit/items_cubit_cubit.dart';
@@ -166,8 +167,7 @@ class _BuildHabitCardState extends State<BuildHabitCard> {
                                           ),
                                           onPressed: () {
                                             context
-                                                .read<ItemsCubit>()
-                                                .deleteItemsToList(index);
+                                                .read<ItemsCubit>().deleteItem(state.items[index],index);
                                            context.read<ItemsCubit>().loadHabitsForToday(DateTime.now());
                                             Navigator.pop(context);
                                           },

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/model/items_model.dart';
@@ -16,7 +17,7 @@ class ItemsCubit extends Cubit<ItemsState> {
 
       RegExp regExp = RegExp(r'name:\s*"(.*?)"'); // get image path
       Match? itemImagePath = regExp.firstMatch(item['iconImage'].toString());
-     // print(itemImagePath!.group(1) ?? '');
+      // print(itemImagePath!.group(1) ?? '');
       final itemImage = Image.asset(itemImagePath!.group(1) ?? '');
 
       final habit = ItemModel(
@@ -37,12 +38,40 @@ class ItemsCubit extends Cubit<ItemsState> {
     emit(ItemsSucceed(habits));
   }
 
-  void deleteItemsToList(int index) {
-    var key = habitsBox.keyAt(index);
-    print("Key Of Habit in Hive $key");
-    habitsBox.delete(key);
-    habits.removeAt(index);
-    emit(ItemsSucceed(habits));
+  void deleteItem(ItemModel item,index) {
+    final equality = ListEquality();
+    final keyToDelete = habitsBox.keys.firstWhere((key) {
+      final habitData = habitsBox.get(key);
+
+      if (habitData is Map) {
+        try {
+          final habit = ItemModel.fromMap(habitData.cast<String, dynamic>());
+          return habit.text == item.text &&
+              habit.color == item.color &&
+              equality.equals(habit.selectedDays, item.selectedDays);
+        } catch (e) {
+          print("Error converting habitData: $e");
+          return false;
+        }
+      }
+      // } else if (habitData is ItemModel) {
+      //   return habitData.text == item.text &&
+      //       habitData.color == item.color &&
+      //       equality.equals(habitData.selectedDays, item.selectedDays);
+      // }
+      return false;
+    }, orElse: () => null);
+
+    if (keyToDelete != null) {
+      habitsBox.delete(keyToDelete);
+     // habits.removeAt(index);
+      habits.removeWhere((habit) =>
+              habit.text == item.text &&
+              habit.color == item.color &&
+              habit.iconImage == item.iconImage &&
+              habit.selectedDays == item.selectedDays);
+      emit(ItemsSucceed(habits));
+    }
   }
 
   void updateItemsInList(int index, ItemModel updatedItem) {
@@ -58,26 +87,25 @@ class ItemsCubit extends Cubit<ItemsState> {
   }
 
   //== 7 ? 0 : today
-  void loadHabitsForToday(selectedDay,[List<ItemModel>? habitList]) {
+  void loadHabitsForToday(selectedDay, [List<ItemModel>? habitList]) {
     //habitsBox.clear();
 
-    List<ItemModel> newList ;
+    List<ItemModel> newList;
     int currentDay = getCurrentDayIndex(selectedDay);
     if (habitList != null) {
-      newList = habitList.where((habit){
+      newList = habitList.where((habit) {
         return habit.selectedDays.contains(currentDay);
       }).toList();
-    }else {
-       newList = habits.where((habit) {
+    } else {
+      newList = habits.where((habit) {
         return habit.selectedDays.contains(currentDay);
       }).toList();
     }
     emit(ItemsSucceed(newList));
   }
 
-  void initData(){
+  void initData() {
     List<ItemModel> listOfHabits = fetchHabits();
-    loadHabitsForToday(DateTime.now(),listOfHabits);
-
+    loadHabitsForToday(DateTime.now(), listOfHabits);
   }
 }
