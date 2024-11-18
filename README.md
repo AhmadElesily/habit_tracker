@@ -43,6 +43,7 @@ Team brainstorming and problem-solving ensured a high-quality app with user-frie
 ---
 
 ## 👨‍💻 Team Members
+- Ahmad Elesily  
 - Ahmed Nafe  
 - Ahmed Salem  
 - Ahmed Sherif  
@@ -64,6 +65,7 @@ Team brainstorming and problem-solving ensured a high-quality app with user-frie
 
 ## 📱 Screenshots
 ![App Screenshots](https://github.com/AhmadElesily/habit_tracker/blob/17f9c1b05d05228964b5f574eeda5da7587263a4/app%20screenshots.jpeg)
+![App Screenshots](https://github.com/AhmadElesily/habit_tracker/blob/55b960a58b549ee45c148966cd0a1ac4efb834fd/amazon%20app%20store%20screenshot.jpeg)
 
 ---
 
