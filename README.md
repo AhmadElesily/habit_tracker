@@ -17,7 +17,7 @@ The Habit Tracker app is designed to help users manage and track their habits ef
   Displays todos, habits, and a calendar view for easy navigation.
 
 - **📈 Habit Tracking**  
-  Progress tracking across weekly, monthly, and yearly views.
+  Progress tracking across weekly, monthly, and yearly views (in Progress) 💪.
 
 - **✏️ Add/Edit Habits**  
   Simple and intuitive screens for adding or editing habits.
