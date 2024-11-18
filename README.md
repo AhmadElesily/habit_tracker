@@ -1,8 +1,6 @@
 **Habit Tracker App 🎉
 **Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)
 
-🚀 Now Available on the Amazon App Store! 📱
-
 📖 Overview
 The Habit Tracker app is designed to help users manage and track their habits effectively, promoting personal growth and accountability. 🌱
 
@@ -32,6 +30,8 @@ Communication: Coordinated via Discord.
 Version Control: Managed with GitHub.
 Team brainstorming and problem-solving ensured a high-quality app with user-friendly features.
 
+🚀 Uploaded Sucessufly on the Amazon App Store! 📱
+
 👨‍💻 Team Members
 Ahmed Nafe
 Ahmed Salem
@@ -44,7 +44,8 @@ To Fatimah Alamoudi for inspiring us with her design ideas.
 Guidance:
 A big thank you to our instructor Youssef Ahmed Saeed for his invaluable support and mentorship. 💙
 
-a side note: app store in current date doesn't work 
+a side note: due to an issue amazon app store link date doesn't work currently 
+
 #DEPI #Dart #Flutter #Android #MobileApps #TeamWork #HabitTracker #Learning
 
 ![image alt](https://github.com/AhmadElesily/habit_tracker/blob/17f9c1b05d05228964b5f574eeda5da7587263a4/app%20screenshots.jpeg)
