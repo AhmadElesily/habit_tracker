@@ -51,7 +51,7 @@ Team brainstorming and problem-solving ensured a high-quality app with user-frie
 
 ---
 
-##🎈 Acknowledgments
+## 🎈 Acknowledgments
 - **Special Thanks**:  
   To Fatimah Alamoudi for inspiring us with her design ideas.  
 - **Guidance**:  
