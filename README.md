@@ -1,52 +1,67 @@
 # Habit Tracker
 
-Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)
+**Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)**
 
-📖 Overview
+---
+
+## 📖 Overview
 The Habit Tracker app is designed to help users manage and track their habits effectively, promoting personal growth and accountability. 🌱
 
-🔑 Key Features
-🎉 Splash Screen
-A friendly welcome screen for users.
+---
 
-📅 Home Screen
-Displays todos, habits, and a calendar view for easy navigation.
+## 🔑 Key Features
+- **🎉 Splash Screen**  
+  A friendly welcome screen for users.
 
-📈 Habit Tracking
-Progress tracking across weekly, monthly, and yearly views.
+- **📅 Home Screen**  
+  Displays todos, habits, and a calendar view for easy navigation.
 
-✏️ Add/Edit Habits
-Simple and intuitive screens for adding or editing habits.
+- **📈 Habit Tracking**  
+  Progress tracking across weekly, monthly, and yearly views.
 
-🔄 State Management
-Built with Bloc/Cubit for a smooth and responsive experience.
+- **✏️ Add/Edit Habits**  
+  Simple and intuitive screens for adding or editing habits.
 
-📦 Database
-Uses Hive for fast and efficient local storage.
+- **🔄 State Management**  
+  Built with Bloc/Cubit for a smooth and responsive experience.
 
-🤝 Collaboration and Development
-This project was built as a collaborative effort by our team, leveraging:
+- **📦 Database**  
+  Uses Hive for fast and efficient local storage.
 
-Communication: Coordinated via Discord.
-Version Control: Managed with GitHub.
+---
+
+## 🤝 Collaboration and Development
+This project was built as a collaborative effort by our team, leveraging:  
+- **Communication**: Coordinated via Discord.  
+- **Version Control**: Managed with GitHub.  
+
 Team brainstorming and problem-solving ensured a high-quality app with user-friendly features.
 
-🚀 Uploaded Sucessufly on the Amazon App Store! 📱
+---
 
-👨‍💻 Team Members
-Ahmed Nafe
-Ahmed Salem
-Ahmed Sherif
-Abdelrahman Bedair
+## 👨‍💻 Team Members
+- Ahmed Nafe  
+- Ahmed Salem  
+- Ahmed Sherif  
+- Abdelrahman Bedair  
 
-Acknowledgments
-Special Thanks:
-To Fatimah Alamoudi for inspiring us with her design ideas.
-Guidance:
-A big thank you to our instructor Youssef Ahmed Saeed for his invaluable support and mentorship. 💙
+---
 
-a side note: due to an issue amazon app store link date doesn't work currently 
+## 🙏 Acknowledgments
+- **Special Thanks**:  
+  To Fatimah Alamoudi for inspiring us with her design ideas.  
+- **Guidance**:  
+  A big thank you to our instructor Youssef Ahmed Saeed for his invaluable support and mentorship. 💙
 
-#DEPI #Dart #Flutter #Android #MobileApps #TeamWork #HabitTracker #Learning
+---
 
-![image alt](https://github.com/AhmadElesily/habit_tracker/blob/17f9c1b05d05228964b5f574eeda5da7587263a4/app%20screenshots.jpeg)
+> **Note**: Due to an issue, the Amazon App Store link does not work currently.
+
+---
+
+## 📱 Screenshots
+![App Screenshots](https://github.com/AhmadElesily/habit_tracker/blob/17f9c1b05d05228964b5f574eeda5da7587263a4/app%20screenshots.jpeg)
+
+---
+
+**#DEPI #Dart #Flutter #Android #MobileApps #TeamWork #HabitTracker #Learning**
