@@ -1,5 +1,5 @@
-Habit Tracker App 🎉
-Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)
+**Habit Tracker App 🎉
+**Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)
 
 🚀 Now Available on the Amazon App Store! 📱
 
@@ -37,7 +37,8 @@ Ahmed Nafe
 Ahmed Salem
 Ahmed Sherif
 Abdelrahman Bedair
-🙏 Acknowledgments
+
+Acknowledgments
 Special Thanks:
 To Fatimah Alamoudi for inspiring us with her design ideas.
 Guidance:
