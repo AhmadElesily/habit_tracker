@@ -1,5 +1,6 @@
-**Habit Tracker App 🎉
-**Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)
+# Habit Tracker
+
+Graduation Project @ Digital Egypt Pioneers Initiative (DEPI)
 
 📖 Overview
 The Habit Tracker app is designed to help users manage and track their habits effectively, promoting personal growth and accountability. 🌱
