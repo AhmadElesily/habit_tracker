@@ -28,6 +28,9 @@ The Habit Tracker app is designed to help users manage and track their habits ef
 - **📦 Database**  
   Uses Hive for fast and efficient local storage.
 
+  - **📱Deployed to an App Store**  
+    🚀 Uploaded Successfully on the Amazon App Store!
+    
 ---
 
 ## 🤝 Collaboration and Development
